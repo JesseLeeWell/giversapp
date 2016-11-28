@@ -40,7 +40,7 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
-       
+
 
         determinStartPage();
     }
@@ -50,12 +50,14 @@ var app = {
 
 function opengiversapp()
 {
+
     var url =_kioskURL;
     //alert(_kioskURL);
-    browserwindow = window.open(url, '_blank', 'toolbar=no,location=no');
+    browserwindow = cordova.InAppBrowser.open(url, '_self', 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
-    //browserwindow.addEventListener('loadstop', iabLoadStopDonation);
-    browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem);    
+    browserwindow.addEventListener('loadstop', iabLoadStopDonation);
+    browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem); 
+
 
 }
 
@@ -72,7 +74,7 @@ function determinStartPage()
     if((hideIntro && hideIntro == 'true'))// || (alreadyshowedintro && alreadyshowedintro == 'true'))
     {
 
-       // opengiversapp();
+        // opengiversapp();
 
     }
     else
@@ -100,7 +102,7 @@ function determinStartPage()
 }
 
 function loadMoreInfo(pagetype)
-{alert(pagetype);
+{
     storageSet('hideintro', true);
     switch(pagetype)
     {
@@ -170,30 +172,38 @@ function loadLearnMorePage()
     browserwindow = window.open(_baseURL, target, 'location=no');
 }
 
-function openPage(url, target, location, includebaseurl)
+function openPage(url, target, location, includebaseurl, callback)
 {
     if(includebaseurl)
     {
         url = _baseURL+url;  
     }
-    browserwindow = window.open(url, target, location);    
+    window.open(url, target, location); 
+    if(callback)
+    {
+        callback();    
+    } 
+      
 }
 
 function iabLoadDonationPageInSystem(event) { 
-    
+    navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
     cururl = event.url;
-     
+
     if(cururl.indexOf("donation_prompt") != -1)
     {
-         alert("here");
-       location.href =_baseURL;
-       alert("here");
-      // browserwindow.close();
-       window.open(_kioskURL, "_blank",'location=no');
-       alert("Taking you to the donation webpage to donate there per Apple's donation terms of use.");
-       openPage(cururl, "_system", "");
-      
-       
+
+        //opengiversapp();
+        //window.open(_kioskURL, "_blank",'location=no');
+        alert("Taking you to the donation webpage to donate there per Apple's donation terms of use.");
+        openPage(cururl, "_system", "",false, opengiversapp);
+
+
     }
+}
+function iabLoadStopDonation(event)
+{
+    
+    navigator.notification.activityStop();
 }
