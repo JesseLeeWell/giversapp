@@ -41,7 +41,7 @@ var app = {
     receivedEvent: function(id) {
 
 
-
+        showvideos();
         determinStartPage();
     }
 
@@ -53,7 +53,7 @@ function opengiversapp()
 
     var url =_kioskURL;
     //alert(_kioskURL);
-    browserwindow = cordova.InAppBrowser.open(url, '_self', 'toolbar=no,location=no');
+    browserwindow = cordova.InAppBrowser.open(url, '_blank', 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
     browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem); 
@@ -206,4 +206,14 @@ function iabLoadStopDonation(event)
 {
     
     navigator.notification.activityStop();
+}
+
+
+function showvideos(){
+    alert("hree");
+    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {  alert("ipad");
+         } else {
+       $("#hideapple").show(); }
+    alert("done");
+    return document.write(embedCode);
 }
