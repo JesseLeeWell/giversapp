@@ -209,6 +209,12 @@ function iabLoadDonationPageInSystem(event) {
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
 
+    if(!isApple())
+    {
+        navigator.notification.activityStart("Loading", "");
+
+    }
+    
     if(cururl.indexOf("backtoapp") != -1)
     {
         browserwindow.close();   
@@ -231,8 +237,12 @@ function iabLoadDonationPageInSystem(event) {
 }
 function iabLoadStopDonation(event)
 {
+    if(!isApple())
+    {
+        navigator.notification.activityStop();
 
-    navigator.notification.activityStop();
+    }
+    // navigator.notification.activityStop();
 }
 
 
