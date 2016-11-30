@@ -40,18 +40,33 @@ var app = {
     // Update DOM on a Received Event
     receivedEvent: function(id) {
 
+        setapplesafe(runapp);
 
-        showvideos();
-        determinStartPage();
     }
 
 
 };
 
-function opengiversapp()
+function runapp()
 {
+    //setapplesafe();
+    //alert(getAppleSafe());
+    setDeviceSpecificClasses();
+    determinStartPage();   
 
-    var url =_kioskURL;
+}
+
+function opengiversapp(url)
+{
+    if(url)
+    {
+
+    }
+    else
+    {
+        var url =_kioskURL;    
+    }
+
     //alert(_kioskURL);
     browserwindow = cordova.InAppBrowser.open(url, '_blank', 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
@@ -172,7 +187,7 @@ function loadLearnMorePage()
     browserwindow = window.open(_baseURL, target, 'location=no');
 }
 
-function openPage(url, target, location, includebaseurl, callback)
+function openPage(url, target, location, includebaseurl, callback, lasturl)
 {
     if(includebaseurl)
     {
@@ -181,39 +196,155 @@ function openPage(url, target, location, includebaseurl, callback)
     window.open(url, target, location); 
     if(callback)
     {
-        callback();    
+        callback(lasturl);    
     } 
-      
+
 }
 
 function iabLoadDonationPageInSystem(event) { 
-    navigator.notification.activityStart("Loading", "");
-    //only do this if it is not apple safe
+
     cururl = event.url;
+    lasturl = storageGet('lasturl', _kioskURL);
+    storageSet('lasturl', cururl);
+    //navigator.notification.activityStart("Loading", "");
+    //only do this if it is not apple safe
 
-    if(cururl.indexOf("donation_prompt") != -1)
+    if(cururl.indexOf("backtoapp") != -1)
     {
+        browserwindow.close();   
+    }
+    if(!getAppleSafe())
+    {
+        cururl = event.url;
 
-        //opengiversapp();
-        //window.open(_kioskURL, "_blank",'location=no');
-        alert("Taking you to the donation webpage to donate there per Apple's donation terms of use.");
-        openPage(cururl, "_system", "",false, opengiversapp);
+        if(cururl.indexOf("donation_prompt") != -1)
+        {
+
+            //opengiversapp();
+            //window.open(_kioskURL, "_blank",'location=no');
+            alert("Taking you to the donation webpage to donate there per Apple's donation terms of use.");
+            openPage(cururl, "_system", "",false, opengiversapp, lasturl);
 
 
+        }
     }
 }
 function iabLoadStopDonation(event)
 {
-    
+
     navigator.notification.activityStop();
 }
 
 
-function showvideos(){
-    alert("hree");
-    if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {  alert("ipad");
-         } else {
-       $("#hideapple").show(); }
-    alert("done");
-    return document.write(embedCode);
+function setDeviceSpecificClasses()
+{
+
+    if(isApple())
+    {
+        //$('.appleonly').show();
+
+    }
+    else
+    {
+
+        $(".hideapple").show();
+
+    }
+    if(getAppleSafe())
+    {
+
+        $('.applestoresafe').show();
+    }
+    else
+    {
+
+        $('.applestoresafe').hide();
+
+    }
+}
+function setapplesafe(callback)
+{
+
+
+    var applesafeversion = storageGet('applesafeversion');
+    var applesafestorage = storageGet('applesafestorage');
+
+    //only check if ipad and and store
+
+
+    var isapple = isApple();
+
+    //if it is false, we need to check in case it changed
+    //if the two app versions don't match up we need to check
+    //if its true and the 2 app version match, we don't need to check    
+
+    if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ))
+    {
+        //if it came in here, we set the flow to false until we know otherwise
+        storageSet('applesafestorage', 'false');
+
+        //then we need to check the version
+        var urltocall = _baseURL + _appCheckURL + "?kioskversion="+_kioskversion;
+
+        $.ajax({
+            url: urltocall,
+            success:function(data){
+
+                var result = (data =='true' )?'true':'false';
+
+
+                storageSet('applesafeversion', _kioskversion);
+                storageSet('applesafestorage', result);
+
+
+            }
+            ,
+            fail:function(data){
+
+
+                storageSet('applesafeversion', _kioskversion);
+                storageSet('applesafestorage', 'false');
+
+
+
+            }
+        });
+
+    }
+    else
+    {
+
+        storageSet('applesafestorage', 'true');
+
+    }
+
+    if(callback)
+    {
+
+        callback();
+    }
+
+}
+function getAppleSafe()
+{      
+    var result = true;
+    //only check if apple, otherwise its true
+
+    var isapple = isApple();
+
+    if( isapple && (_kiosklicense == 'store'))
+    {
+        result = (storageGet('applesafestorage') == 'true')?true:false;
+    }
+
+    return result;
+}
+
+function isApple()
+{
+
+    var devicetype = device.platform;    
+    var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
+
+    return result
 }

@@ -6,7 +6,7 @@ var environment = 'qa';
 //var environment = 'local';
 //var environment = 'prod';
 
-var _kioskversion = '1.1';
+var _kioskversion = '1.0';
 var _kiosklicense = 'store';
 
 //var _kiosklicense = 'enterprise';
@@ -76,7 +76,7 @@ var _contactRequestURL ='index.php?moduleType=Module_kiosk&task=appcontactreques
 var _searchPage = 'index.php?moduleType=Module_Search&task=show.results';
 var _signUpPage = 'index.php?moduleType=Module_Registration&task=regflow_church&registrationstep=regcreateaccount';
 var _getPageInformationURL = 'router/Kiosk/getpageinformation?pageid=';
-var _appCheckURL = 'appcheck.php';
+var _appCheckURL = 'giverappcheck.php';
 var _iosEnterpriseVersionAppCheckURL = _baseURL+'iosenterpriseversionappcheck.php';
 var _purchasePageURL = 'index.php?moduleType=Module_Content&task=text&article=offering-kiosk-giving-kiosk';
 var _lockKioskHelpURL = 'index.php?moduleType=Module_Content&task=text&article=kiosk_ios_kiosk_mode';
