@@ -1,7 +1,7 @@
 
 //environment
 //var environment = 'dev';
-var environment = 'qa';
+var environment = 'prod';
 //var environment = 'local';
 //var environment = 'local';
 //var environment = 'prod';
