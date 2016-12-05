@@ -68,14 +68,9 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
-    alert("here");
+   
     target = "_blank";
-    if(isApple())
-    {
-        alert("here");
-        target = "_blank";
-    }
-    alert("here");
+    
     browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -360,10 +355,10 @@ function getAppleSafe()
 
 function isApple()
 {
-    alert("in is apple");
+   
     var devicetype = device.platform; 
-    alert(devicetype);   
+     
     var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
-    alert (result);
+  
     return result
 }
