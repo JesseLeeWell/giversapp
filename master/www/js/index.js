@@ -361,7 +361,8 @@ function getAppleSafe()
 function isApple()
 {
 
-    var devicetype = device.platform;    
+    var devicetype = device.platform; 
+    alert(devicetype);   
     var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
     alert (result);
     return result
