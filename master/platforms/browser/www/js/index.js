@@ -68,9 +68,11 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
+    alert("here");
     target = "_blank";
     if(isApple())
     {
+        alert("here");
         target = "_blank";
     }
     alert("here");
