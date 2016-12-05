@@ -68,7 +68,12 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
-    browserwindow = cordova.InAppBrowser.open(url, '_blank', 'toolbar=no,location=no');
+    target = "_self";
+    if(isApple())
+    {
+        target = "_blank";
+    }
+    browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
     browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem); 
