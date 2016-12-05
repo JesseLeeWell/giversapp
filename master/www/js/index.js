@@ -73,6 +73,7 @@ function opengiversapp(url)
     {
         target = "_blank";
     }
+    alert("here");
     browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
