@@ -68,9 +68,9 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
-   
+
     target = "_blank";
-    
+
     browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -211,27 +211,31 @@ function iabLoadDonationPageInSystem(event) {
     storageSet('lasturl', cururl);
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
-
     if(!isApple())
     {
         navigator.notification.activityStart("Loading", "");
 
     }
-    
+
     if(cururl.indexOf("backtoapp") != -1)
     {
         browserwindow.close();   
     }
+
     if(!getAppleSafe())
     {
+
         cururl = event.url;
 
-        if(cururl.indexOf("donation_prompt") != -1)
+        if(cururl.indexOf("donation_prompt") != -1 || cururl.indexOf("show_registration_only") != -1 || cururl.indexOf("regcreateaccount") != -1 || cururl.indexOf("show_login_only") != -1)
         {
+
+            cururl = cururl.replace("giverapp", "www");
 
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
-            alert("Taking you to the donation webpage to donate there per Apple's donation terms of use.");
+            alert("Taking you to our webpage for certain features per Apple's terms of use.");
+
             openPage(cururl, "_system", "",false, opengiversapp, lasturl);
 
 
@@ -240,7 +244,7 @@ function iabLoadDonationPageInSystem(event) {
 }
 function iabLoadStopDonation(event)
 {
-    if(!isApple())
+    if(!isApple() )
     {
         navigator.notification.activityStop();
 
@@ -290,8 +294,9 @@ function setapplesafe(callback)
     //if it is false, we need to check in case it changed
     //if the two app versions don't match up we need to check
     //if its true and the 2 app version match, we don't need to check    
-
-    if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ))
+    // if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
+    // {
+    if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
     {
         //if it came in here, we set the flow to false until we know otherwise
         storageSet('applesafestorage', 'false');
@@ -301,7 +306,7 @@ function setapplesafe(callback)
 
         $.ajax({
             url: urltocall,
-            success:function(data){
+            success:function(data){  
 
                 var result = (data =='true' )?'true':'false';
 
@@ -355,10 +360,10 @@ function getAppleSafe()
 
 function isApple()
 {
-   
+
     var devicetype = device.platform; 
-     
+
     var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
-  
+
     return result
 }

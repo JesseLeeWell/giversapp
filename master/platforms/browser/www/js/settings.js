@@ -6,7 +6,7 @@ var environment = 'prod';
 //var environment = 'local';
 //var environment = 'prod';
 
-var _kioskversion = '1.0';
+var _kioskversion = '1.2';
 var _kiosklicense = 'store';
 
 //var _kiosklicense = 'enterprise';
@@ -91,8 +91,10 @@ var _storagePin = 'pin';
 
 
 //load the logos
+/*
 $( document ).ready(function() {
    $( "._whitelablelogoclass" ).attr( "src", _whitelablelogo );
             
 });
+*/
 
