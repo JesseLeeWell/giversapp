@@ -230,7 +230,7 @@ function iabLoadDonationPageInSystem(event) {
         if(cururl.indexOf("donation_prompt") != -1 || cururl.indexOf("show_registration_only") != -1 || cururl.indexOf("regcreateaccount") != -1 || cururl.indexOf("show_login_only") != -1)
         {
 
-            cururl = cururl.replace("giverapp", "www");
+           // cururl = cururl.replace("giverapp", "www");
 
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
