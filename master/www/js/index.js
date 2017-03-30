@@ -29,6 +29,7 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener("resume", this.onResume, false);
     },
     // deviceready Event Handler
     //
@@ -37,10 +38,19 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
     },
+    onResume: function() {
+        app.receivedEvent('resume');
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+       
+        if(id == "deviceready" || id == "resume")
+        {
+            
+            setapplesafe(runapp);    
 
-        setapplesafe(runapp);
+        }
+
 
     }
 
@@ -227,14 +237,14 @@ function iabLoadDonationPageInSystem(event) {
 
         cururl = event.url;
 
-        if(cururl.indexOf("donation_prompt") != -1 || cururl.indexOf("show_registration_only") != -1 || cururl.indexOf("regcreateaccount") != -1 || cururl.indexOf("show_login_only") != -1)
+        if(cururl.indexOf("donation_prompt") != -1 )
         {
 
-           // cururl = cururl.replace("giverapp", "www");
+            // cururl = cururl.replace("giverapp", "www");
 
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
-            alert("Taking you to our webpage for certain features per Apple's terms of use.");
+            alert("Taking you to our webpage to donate per Apple's terms of use.");
 
             openPage(cururl, "_system", "",false, opengiversapp, lasturl);
 
@@ -296,7 +306,10 @@ function setapplesafe(callback)
     //if its true and the 2 app version match, we don't need to check    
     // if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
     // {
-    if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
+    //if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
+    // {
+    //checking every time so I can control this even if it was already safe
+    if(((isapple && (_kiosklicense == 'store')) )  )
     {
         //if it came in here, we set the flow to false until we know otherwise
         storageSet('applesafestorage', 'false');
@@ -306,11 +319,11 @@ function setapplesafe(callback)
 
         $.ajax({
             url: urltocall,
+            async: false,
             success:function(data){  
 
                 var result = (data =='true' )?'true':'false';
-
-
+               
                 storageSet('applesafeversion', _kioskversion);
                 storageSet('applesafestorage', result);
 
@@ -340,7 +353,7 @@ function setapplesafe(callback)
     {
 
         callback();
-    }
+    }   
 
 }
 function getAppleSafe()

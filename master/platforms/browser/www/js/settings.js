@@ -2,11 +2,11 @@
 //environment
 //var environment = 'dev';
 var environment = 'prod';
-//var environment = 'local';
+//var environment = 'demo';
 //var environment = 'local';
 //var environment = 'prod';
 
-var _kioskversion = '1.2';
+var _kioskversion = '1.1';
 var _kiosklicense = 'store';
 
 //var _kiosklicense = 'enterprise';
@@ -45,8 +45,8 @@ else if(environment == 'qa')
 }
 else if(environment == 'demo')
 {
-	var _baseURL = 'https://demo.'+_whitelabel+'.com/';
-	var _kioskURL = 'https://demo-giverapp.'+_whitelabel+'.com/';
+	var _baseURL = 'http://demo.'+_whitelabel+'.com/';
+	var _kioskURL = 'http://demo-giverapp.'+_whitelabel+'.com/';
 }
 else if(environment == 'local')
 {
