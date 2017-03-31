@@ -21,7 +21,9 @@ var browserwindow = null;
 var app = {
     // Application Constructor
     initialize: function() {
+         
         this.bindEvents();
+            
     },
     // Bind Event Listeners
     //
@@ -43,7 +45,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-       alert(id);
+      // alert(id);
         if(id == "deviceready" || id == "resume")
         {
            
@@ -53,12 +55,15 @@ var app = {
 
 
     }
+    
 
 
 };
 
+
 function runapp()
 {
+    alert('in runnapp');
     //setapplesafe();
     //alert(getAppleSafe());
     setDeviceSpecificClasses();
@@ -388,3 +393,6 @@ function isApple()
 
     return result
 }
+
+
+ app.initialize();
