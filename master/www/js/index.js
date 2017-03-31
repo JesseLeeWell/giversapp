@@ -46,7 +46,7 @@ var app = {
        
         if(id == "deviceready" || id == "resume")
         {
-            
+           
             setapplesafe(runapp);    
 
         }
@@ -81,7 +81,8 @@ function opengiversapp(url)
 
     target = "_blank";
 
-    browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
+   browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
+  
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
     browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem); 
@@ -208,7 +209,7 @@ function openPage(url, target, location, includebaseurl, callback, lasturl)
     }
      if(callback)
     {
-         alert(lasturl);
+        
         callback(lasturl);  
           
     } 
@@ -224,7 +225,7 @@ function iabLoadDonationPageInSystem(event) {
     storageSet('lasturl', cururl);
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
-    
+   
     if(!isApple() )
     {
         navigator.notification.activityStart("Loading", "");
@@ -249,8 +250,9 @@ function iabLoadDonationPageInSystem(event) {
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
             alert("Taking you to our webpage to donate per Apple's terms of use.");
-            window.history.go(-1);
-            //openPage(cururl, "_system", "",false);
+            //window.history.go(-1);
+            openPage(cururl, "_system", "",false, opengiversapp,lasturl);
+           
            
 
         }
