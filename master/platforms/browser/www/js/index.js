@@ -45,7 +45,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-      // alert(id);
+       alert(id);
         if(id == "deviceready" || id == "resume")
         {
            
