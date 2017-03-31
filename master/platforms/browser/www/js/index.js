@@ -206,11 +206,14 @@ function openPage(url, target, location, includebaseurl, callback, lasturl)
     {
         url = _baseURL+url;  
     }
-    window.open(url, target, location); 
-    if(callback)
+     if(callback)
     {
-        callback(lasturl);    
+         alert(lasturl);
+        callback(lasturl);  
+          
     } 
+    window.open(url, target, location); 
+   
 
 }
 
@@ -221,7 +224,8 @@ function iabLoadDonationPageInSystem(event) {
     storageSet('lasturl', cururl);
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
-    if(!isApple())
+    
+    if(!isApple() )
     {
         navigator.notification.activityStart("Loading", "");
 
@@ -247,7 +251,7 @@ function iabLoadDonationPageInSystem(event) {
             alert("Taking you to our webpage to donate per Apple's terms of use.");
 
             openPage(cururl, "_system", "",false, opengiversapp, lasturl);
-
+           
 
         }
     }
