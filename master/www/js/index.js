@@ -17,11 +17,11 @@
 * under the License.
 */
 var browserwindow = null;
-
+ console.log('loading js'); 
 var app = {
     // Application Constructor
     initialize: function() {
-        console.log('in initialize'); 
+        console.log('in initializee'); 
         this.bindEvents();
             
     },
@@ -277,7 +277,7 @@ function iabLoadStopDonation(event)
 
 function setDeviceSpecificClasses()
 {
-    alert('setDeviceSpecificClasses');
+    console.log('setDeviceSpecificClasses');
     if(isApple())
     {
         //$('.appleonly').show();
@@ -300,7 +300,7 @@ function setDeviceSpecificClasses()
         $('.applestoresafe').hide();
 
     }
-    alert('end setDeviceSpecificClasses');
+    console.log('end setDeviceSpecificClasses');
 }
 function setapplesafe(callback)
 {
