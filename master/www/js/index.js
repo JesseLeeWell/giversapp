@@ -249,8 +249,8 @@ function iabLoadDonationPageInSystem(event) {
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
             alert("Taking you to our webpage to donate per Apple's terms of use.");
-
-            openPage(cururl, "_system", "",false, opengiversapp, lasturl);
+            window.history.go(-1);
+            //openPage(cururl, "_system", "",false);
            
 
         }
