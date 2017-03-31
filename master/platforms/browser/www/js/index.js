@@ -21,7 +21,7 @@ var browserwindow = null;
 var app = {
     // Application Constructor
     initialize: function() {
-         
+        console.log('in initialize'); 
         this.bindEvents();
             
     },
@@ -45,7 +45,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-       alert(id);
+       console.log(id);
         if(id == "deviceready" || id == "resume")
         {
            
@@ -63,7 +63,7 @@ var app = {
 
 function runapp()
 {
-    alert('in runnapp');
+    console.log('in runnapp');
     //setapplesafe();
     //alert(getAppleSafe());
     setDeviceSpecificClasses();
@@ -98,7 +98,7 @@ function opengiversapp(url)
 
 function determinStartPage()
 {
-    alert('determinStartPage');
+    console.log('determinStartPage');
     storageSet('already_initialSetup', true);
     storageSet('hideintro', true);
 
@@ -132,7 +132,7 @@ function determinStartPage()
 
     }
 
- alert(' end determinStartPage');
+ console.log(' end determinStartPage');
 
 }
 
