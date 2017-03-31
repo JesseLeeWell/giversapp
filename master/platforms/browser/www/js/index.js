@@ -43,7 +43,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-       
+       alert(id);
         if(id == "deviceready" || id == "resume")
         {
            
@@ -80,8 +80,9 @@ function opengiversapp(url)
     //alert(_kioskURL);
 
     target = "_blank";
+    //target = "_self";
 
-   browserwindow = cordova.InAppBrowser.open(url, "_blank", 'toolbar=no,location=no');
+   browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
   
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -381,7 +382,7 @@ function isApple()
 {
 
     var devicetype = device.platform; 
-    alert(devicetype);
+    //alert(devicetype);
 
     var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
 
