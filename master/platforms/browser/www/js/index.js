@@ -321,6 +321,7 @@ function setapplesafe(callback)
     //if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
     // {
     //checking every time so I can control this even if it was already safe
+    /*
     if(((isapple && (_kiosklicense == 'store')) )  )
     {
         //if it came in here, we set the flow to false until we know otherwise
@@ -360,7 +361,8 @@ function setapplesafe(callback)
         storageSet('applesafestorage', 'true');
 
     }
-
+    */
+     storageSet('applesafestorage', 'true');
     if(callback)
     {
 
