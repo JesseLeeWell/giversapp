@@ -98,7 +98,7 @@ function opengiversapp(url)
 
 function determinStartPage()
 {
-
+    alert('determinStartPage');
     storageSet('already_initialSetup', true);
     storageSet('hideintro', true);
 
@@ -132,7 +132,7 @@ function determinStartPage()
 
     }
 
-
+ alert(' end determinStartPage');
 
 }
 
@@ -277,7 +277,7 @@ function iabLoadStopDonation(event)
 
 function setDeviceSpecificClasses()
 {
-
+    alert('setDeviceSpecificClasses');
     if(isApple())
     {
         //$('.appleonly').show();
@@ -300,6 +300,7 @@ function setDeviceSpecificClasses()
         $('.applestoresafe').hide();
 
     }
+    alert('end setDeviceSpecificClasses');
 }
 function setapplesafe(callback)
 {
