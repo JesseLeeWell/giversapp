@@ -258,6 +258,8 @@ function iabLoadDonationPageInSystem(event) {
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
             alert("Taking you to our webpage to donate per Apple's terms of use.");
+            //navigator.notification.confirm("Taking you to our webpage to donate per Apple's terms of use.", null, "Givers App", "OK");
+
             //window.history.go(-1);
             openPage(cururl, "_system", "",false, opengiversapp,lasturl);
            
@@ -324,7 +326,7 @@ function setapplesafe(callback)
     //if(((isapple && (_kiosklicense == 'store')) ) && ( !(applesafestorage == 'true') || !(applesafeversion == _kioskversion) ) )
     // {
     //checking every time so I can control this even if it was already safe
-    /*
+   
     if(((isapple && (_kiosklicense == 'store')) )  )
     {
         //if it came in here, we set the flow to false until we know otherwise
@@ -364,8 +366,8 @@ function setapplesafe(callback)
         storageSet('applesafestorage', 'true');
 
     }
-    */
-     storageSet('applesafestorage', 'true');
+   
+     //storageSet('applesafestorage', 'true');
     if(callback)
     {
 
