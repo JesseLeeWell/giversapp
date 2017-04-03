@@ -17,11 +17,11 @@
 * under the License.
 */
 var browserwindow = null;
- console.log('loading js'); 
+  
 var app = {
     // Application Constructor
     initialize: function() {
-        console.log('in initializee'); 
+         
         this.bindEvents();
             
     },
@@ -45,7 +45,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-       console.log(id);
+       
         if(id == "deviceready" || id == "resume")
         {
            
@@ -63,7 +63,7 @@ var app = {
 
 function runapp()
 {
-    console.log('in runnapp');
+    
     //setapplesafe();
     //alert(getAppleSafe());
     setDeviceSpecificClasses();
@@ -98,7 +98,7 @@ function opengiversapp(url)
 
 function determinStartPage()
 {
-    console.log('determinStartPage');
+    
     storageSet('already_initialSetup', true);
     storageSet('hideintro', true);
 
@@ -132,7 +132,7 @@ function determinStartPage()
 
     }
 
- console.log(' end determinStartPage');
+
 
 }
 
@@ -232,11 +232,13 @@ function iabLoadDonationPageInSystem(event) {
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
    
-    if(!isApple() )
+    if(!isApple() || true )
     {
+        
         navigator.notification.activityStart("Loading", "");
 
     }
+   
 
     if(cururl.indexOf("backtoapp") != -1)
     {
@@ -266,7 +268,7 @@ function iabLoadDonationPageInSystem(event) {
 }
 function iabLoadStopDonation(event)
 {
-    if(!isApple() )
+    if(!isApple() || true )
     {
         navigator.notification.activityStop();
 
@@ -277,7 +279,7 @@ function iabLoadStopDonation(event)
 
 function setDeviceSpecificClasses()
 {
-    console.log('setDeviceSpecificClasses');
+  
     if(isApple())
     {
         //$('.appleonly').show();
@@ -300,7 +302,7 @@ function setDeviceSpecificClasses()
         $('.applestoresafe').hide();
 
     }
-    console.log('end setDeviceSpecificClasses');
+ 
 }
 function setapplesafe(callback)
 {
