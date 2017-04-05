@@ -261,7 +261,11 @@ function iabLoadDonationPageInSystem(event) {
             //navigator.notification.confirm("Taking you to our webpage to donate per Apple's terms of use.", null, "Givers App", "OK");
 
             //window.history.go(-1);
-            openPage(cururl, "_system", "",false, opengiversapp,lasturl);
+            //openPage(cururl, "_system", "",false, opengiversapp,lasturl);
+            browserwindow.close();
+            
+            openPage(cururl, "_system", "",false);
+            opengiversapp(lasturl);
            
            
 
