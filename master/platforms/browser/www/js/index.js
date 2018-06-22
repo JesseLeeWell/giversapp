@@ -83,11 +83,14 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
+    var isAppleSafe = getAppleSafe();
 
-    target = "_blank";
+    target = isAppleSafe ? "_blank" : "_system";
+    //target = "_blank";
     //target = "_self";
 
    browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+   //browserwindow = window.open(url, target, 'toolbar=no,location=no');
   
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -261,7 +264,11 @@ function iabLoadDonationPageInSystem(event) {
             //navigator.notification.confirm("Taking you to our webpage to donate per Apple's terms of use.", null, "Givers App", "OK");
 
             //window.history.go(-1);
-            openPage(cururl, "_system", "",false, opengiversapp,lasturl);
+            //openPage(cururl, "_system", "",false, opengiversapp,lasturl);
+            browserwindow.close();
+            
+            openPage(cururl, "_system", "",false);
+            opengiversapp(lasturl);
            
            
 
@@ -399,6 +406,15 @@ function isApple()
     var result = ((devicetype.toLowerCase().indexOf("iphone") >= 0) || (devicetype.toLowerCase().indexOf("ipad") >= 0) || (devicetype.toLowerCase().indexOf("ipod") >= 0) || (devicetype.toLowerCase().indexOf("ios") >= 0));
 
     return result
+}
+
+function changeUrl(url){
+    var isAppleSafe = getAppleSafe();
+    target = isAppleSafe ? "_blank" : "_system";
+    //target = "_blank";
+    //target = "_self";
+
+    browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
 }
 
 
