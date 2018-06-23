@@ -48,7 +48,7 @@
                 //NSLog(@"%@", [params objectForKey:@"page"]);
                 if ([self.viewController.webView isKindOfClass:[UIWebView class]]) {
                     //NSURLRequest *request = [(UIWebView*)self.viewController.webView request];
-                    NSString *url = @"https://iframe.continuetogive.com/";
+                    NSString *url = @"https://giverapp.continuetogive.com/";
                     NSString *fullUrl = [url stringByAppendingString:[params objectForKey:@"page"]];
                     NSLog(@"%@", fullUrl);
                     NSString *javascript = [NSString stringWithFormat:@"changeUrl(\"%@\")", fullUrl];

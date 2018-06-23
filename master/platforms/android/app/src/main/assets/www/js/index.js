@@ -410,11 +410,13 @@ function isApple()
 
 function changeUrl(url){
     var isAppleSafe = getAppleSafe();
-    target = isAppleSafe ? "_blank" : "_system";
-    //target = "_blank";
+    //target = isAppleSafe ? "_blank" : "_system";
+    target = "_blank";
     //target = "_self";
-
-    browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+    //target = "_system";
+    if(isAppleSafe){
+        browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+    }
 }
 
 
