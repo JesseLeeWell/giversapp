@@ -261,3 +261,7 @@ body
     margin-bottom: 8px;
 }
 /* end jqury override */
+
+#main{
+	display: none;
+}

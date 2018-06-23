@@ -108,7 +108,19 @@ function determinStartPage()
     //var hideIntro = 'true';//storageGet('hideintro');
     var hideIntro = storageGet('hideintro');
 
+    var lasturl = storageGet('lasturl', _kioskURL);
+    var dont_show_again = storageGet('dont_show_again');
+
+    if(lasturl){
+        opengiversapp(lasturl);
+    }
+
+    if(!dont_show_again){
+        $('#main').show();
+    }
+
     //var alreadyshowedintro = window.sessionStorage.getItem('alreadyshowedintro');
+    /*
     if((hideIntro && hideIntro == 'true'))// || (alreadyshowedintro && alreadyshowedintro == 'true'))
     {
 
@@ -134,7 +146,7 @@ function determinStartPage()
 
 
     }
-
+    */
 
 
 }
@@ -232,6 +244,7 @@ function iabLoadDonationPageInSystem(event) {
     cururl = event.url;
     lasturl = storageGet('lasturl', _kioskURL);
     storageSet('lasturl', cururl);
+
     //navigator.notification.activityStart("Loading", "");
     //only do this if it is not apple safe
    
@@ -415,9 +428,15 @@ function changeUrl(url){
     //target = "_self";
     //target = "_system";
     if(isAppleSafe){
-        browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+        //browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+        opengiversapp(url);
     }
 }
 
+function dontShowAgain(){
+    storageSet('dont_show_again', 'true');
+    opengiversapp();
+    $('#main').hide();
+}
 
  app.initialize();
