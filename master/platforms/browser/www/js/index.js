@@ -96,7 +96,7 @@ function opengiversapp(url)
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
     browserwindow.addEventListener('loadstart', iabLoadDonationPageInSystem); 
 
-
+    dontShowAgain();
 }
 
 function determinStartPage()
@@ -111,7 +111,7 @@ function determinStartPage()
     var lasturl = storageGet('lasturl', _kioskURL);
     var dont_show_again = storageGet('dont_show_again');
 
-    if(lasturl){
+    if(lasturl || dont_show_again){
         opengiversapp(lasturl);
     }
 
@@ -359,7 +359,6 @@ function setapplesafe(callback)
             url: urltocall,
             async: false,
             success:function(data){  
-
                 var result = (data =='true' )?'true':'false';
                
                 storageSet('applesafeversion', _kioskversion);
@@ -435,7 +434,6 @@ function changeUrl(url){
 
 function dontShowAgain(){
     storageSet('dont_show_again', 'true');
-    opengiversapp();
     $('#main').hide();
 }
 

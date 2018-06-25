@@ -1,10 +1,10 @@
 
 //environment
 //var environment = 'dev';
-var environment = 'prod';
+//var environment = 'prod';
 //var environment = 'demo';
 //var environment = 'local';
-//var environment = 'prod';
+var environment = 'qa';
 
 var _kioskversion = '1.2';
 var _kiosklicense = 'store';
@@ -40,13 +40,13 @@ if(environment == 'dev')
 }
 else if(environment == 'qa')
 {
-	var _baseURL = 'http://qa.'+_whitelabel+'.com/';
-	var _kioskURL = 'http://qa-giverapp.'+_whitelabel+'.com/';
+	var _baseURL = 'https://qa.'+_whitelabel+'.com/';
+	var _kioskURL = 'https://qa-giverapp.'+_whitelabel+'.com/';
 }
 else if(environment == 'demo')
 {
-	var _baseURL = 'http://demo.'+_whitelabel+'.com/';
-	var _kioskURL = 'http://demo-giverapp.'+_whitelabel+'.com/';
+	var _baseURL = 'https://demo.'+_whitelabel+'.com/';
+	var _kioskURL = 'https://demo-giverapp.'+_whitelabel+'.com/';
 }
 else if(environment == 'local')
 {
