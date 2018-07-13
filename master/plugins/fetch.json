@@ -103,5 +103,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "branch-cordova-sdk": {
+    "source": {
+      "type": "registry",
+      "id": "branch-cordova-sdk@^2.5.0"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

@@ -35,6 +35,16 @@
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
     </feature>
+    <feature name="BranchSDK">
+        <param name="android-package" value="io.branch.BranchSDK" />
+        <param name="onload" value="true" />
+    </feature>
+    <branch-config>
+        <branch-key value="key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD" />
+        <uri-scheme value="giverapp" />
+        <link-domain value="continuetogive.app.link" />
+        <ios-team-release value="86DCZ8S5Q6" />
+    </branch-config>
     <name>Givers App</name>
     <description>
         Continue To Give's Giver App for easy giving.
@@ -72,5 +82,6 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="KeepRunning" value="true" />
 </widget>

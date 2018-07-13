@@ -1,0 +1,14 @@
+/examples/
+/tmp/
+node_modules/
+
+.DS_Store
+.installed
+
+npm-debug.log*
+yarn-error.log*
+
+package-lock.json
+plugin.template.xml
+gulpfile.js
+CONTRIBUTING.md

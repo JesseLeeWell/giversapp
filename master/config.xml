@@ -1,5 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.continuetogive.giverapp" version="3.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <plugin name="branch-cordova-sdk" spec="3.0.0" />
+    <branch-config>
+        <branch-key value="" />
+        <uri-scheme value="" />
+        <link-domain value="" />
+        <ios-team-release value="" />
+    </branch-config>
     <name>Givers App</name>
     <description>
         Continue To Give's Giver App for easy giving.
@@ -9,7 +16,8 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="KeepRunning" value="true" />
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.2.4" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.4.1" />
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.4.3" />
@@ -106,6 +114,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <engine name="ios" spec="~4.5.4" />
     <engine name="android" spec="~7.0.0" />
+    <engine name="ios" spec="^4.5.4" />
 </widget>

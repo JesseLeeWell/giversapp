@@ -369,6 +369,14 @@ module.exports = [
       "navigator.notification",
       "navigator"
     ]
+  },
+  {
+    "id": "branch-cordova-sdk.Branch",
+    "file": "plugins/branch-cordova-sdk/src/branch.js",
+    "pluginId": "branch-cordova-sdk",
+    "clobbers": [
+      "Branch"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -384,7 +392,8 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "1.7.2",
   "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
-  "cordova-plugin-vibration": "2.1.6"
+  "cordova-plugin-vibration": "2.1.6",
+  "branch-cordova-sdk": "2.6.24"
 };
 // BOTTOM OF METADATA
 });

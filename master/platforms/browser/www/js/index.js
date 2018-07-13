@@ -38,23 +38,35 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        //console.log("ready");
         app.receivedEvent('deviceready');
     },
     onResume: function() {
+        //console.log("resume");
         app.receivedEvent('resume');
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-       
         if(id == "deviceready" || id == "resume")
         {
-           
-            setapplesafe(runapp);    
-
+            setapplesafe(runapp);
+            app.handleBranch();
         }
-
-
-    }
+    },
+    handleBranch: function() {
+        //console.log("handle");
+        // Branch initialization
+        Branch.initSession().then(function(data) {
+            if (data['+clicked_branch_link']) {
+                // read deep link data on click
+                if(data['page']){
+                    //console.log('Deep Link Data: ' + JSON.stringify(data));
+                    var fullUrl = _kioskURL+data['page'];
+                    opengiversapp(fullUrl);
+                }
+            }
+        });
+      }
     
 
 
@@ -84,6 +96,9 @@ function opengiversapp(url)
 
     //alert(_kioskURL);
     var isAppleSafe = getAppleSafe();
+    setapplesafe(function(){
+        isAppleSafe = getAppleSafe();
+    });
 
     target = isAppleSafe ? "_blank" : "_system";
     //target = "_blank";
@@ -108,14 +123,15 @@ function determinStartPage()
     //var hideIntro = 'true';//storageGet('hideintro');
     var hideIntro = storageGet('hideintro');
 
-    var lasturl = storageGet('lasturl', _kioskURL);
-    var dont_show_again = storageGet('dont_show_again');
-
+    var lasturl = DEV_MODE ? false : storageGet('lasturl', _kioskURL);
+    var dont_show_again = DEV_MODE ? false : storageGet('dont_show_again');
+    
     if(lasturl || dont_show_again){
-        opengiversapp(lasturl);
+        var url = lasturl.replace('#backtoapp', '');//if user clicked back
+        opengiversapp(url);
     }
 
-    if(!dont_show_again){
+    if(dont_show_again != 'true'){
         $('#main').show();
     }
 
@@ -421,15 +437,12 @@ function isApple()
 }
 
 function changeUrl(url){
-    var isAppleSafe = getAppleSafe();
-    //target = isAppleSafe ? "_blank" : "_system";
-    target = "_blank";
-    //target = "_self";
-    //target = "_system";
-    if(isAppleSafe){
-        //browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
-        opengiversapp(url);
-    }
+    var fullUrl = _kioskURL+url;
+    console.log(fullUrl);
+    storageSet('lasturl', fullUrl);
+    setTimeout(function(){
+        opengiversapp(fullUrl);
+    }, 0);
 }
 
 function dontShowAgain(){

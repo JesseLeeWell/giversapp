@@ -1,12 +1,12 @@
 
 //environment
 //var environment = 'dev';
-//var environment = 'prod';
+var environment = 'prod';
 //var environment = 'demo';
 //var environment = 'local';
-var environment = 'qa';
+//var environment = 'qa';
 
-var _kioskversion = '1.2';
+var _kioskversion = '3.4';
 var _kiosklicense = 'store';
 
 //var _kiosklicense = 'enterprise';
@@ -76,7 +76,7 @@ var _contactRequestURL ='index.php?moduleType=Module_kiosk&task=appcontactreques
 var _searchPage = 'index.php?moduleType=Module_Search&task=show.results';
 var _signUpPage = 'index.php?moduleType=Module_Registration&task=regflow_church&registrationstep=regcreateaccount';
 var _getPageInformationURL = 'router/Kiosk/getpageinformation?pageid=';
-var _appCheckURL = 'giverappcheck.php';
+var _appCheckURL = 'appcheck.php';
 var _iosEnterpriseVersionAppCheckURL = _baseURL+'iosenterpriseversionappcheck.php';
 var _purchasePageURL = 'index.php?moduleType=Module_Content&task=text&article=offering-kiosk-giving-kiosk';
 var _lockKioskHelpURL = 'index.php?moduleType=Module_Content&task=text&article=kiosk_ios_kiosk_mode';
@@ -88,7 +88,7 @@ var _storagePageID = "storagePageID";
 var _storageDisplayName = "storageDisplayName";
 var _storageFullURL = "storageFullURL";
 var _storagePin = 'pin';
-
+var DEV_MODE = false;
 
 //load the logos
 /*
