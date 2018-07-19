@@ -95,17 +95,19 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
+    /*
     var isAppleSafe = getAppleSafe();
     setapplesafe(function(){
         isAppleSafe = getAppleSafe();
     });
 
     target = isAppleSafe ? "_blank" : "_system";
+    */
     //target = "_blank";
-    //target = "_self";
+    target = "_self";
 
-   browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
-   //browserwindow = window.open(url, target, 'toolbar=no,location=no');
+   //browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+   browserwindow = window.open(url, target, 'toolbar=no,location=no');
   
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -276,7 +278,7 @@ function iabLoadDonationPageInSystem(event) {
     {
         browserwindow.close();   
     }
-
+    alert(getAppleSafe());
     if(!getAppleSafe())
     {
 

@@ -95,13 +95,13 @@ function opengiversapp(url)
     }
 
     //alert(_kioskURL);
-    var isAppleSafe = getAppleSafe();
-    setapplesafe(function(){
-        isAppleSafe = getAppleSafe();
-    });
+    //var isAppleSafe = getAppleSafe();
+    //setapplesafe(function(){
+        //isAppleSafe = getAppleSafe();
+    //});
 
-    target = isAppleSafe ? "_blank" : "_system";
-    //target = "_blank";
+    //target = isAppleSafe ? "_blank" : "_system";
+    target = "_blank";
     //target = "_self";
 
    browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
@@ -256,7 +256,6 @@ function openPage(url, target, location, includebaseurl, callback, lasturl)
 }
 
 function iabLoadDonationPageInSystem(event) { 
-
     cururl = event.url;
     lasturl = storageGet('lasturl', _kioskURL);
     storageSet('lasturl', cururl);
