@@ -19,6 +19,7 @@
 var browserwindow = null;
   
 var app = {
+    eventId: "",
     // Application Constructor
     initialize: function() {
          
@@ -47,6 +48,7 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
+        app.eventId = id;
         if(id == "deviceready" || id == "resume")
         {
             setapplesafe(runapp);
@@ -94,20 +96,14 @@ function opengiversapp(url)
         var url =_kioskURL;    
     }
 
-    //alert(_kioskURL);
-    /*
-    var isAppleSafe = getAppleSafe();
-    setapplesafe(function(){
-        isAppleSafe = getAppleSafe();
-    });
+    target = "_blank";
+    //target = "_self";
 
-    target = isAppleSafe ? "_blank" : "_system";
-    */
-    //target = "_blank";
-    target = "_self";
-
-   //browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
-   browserwindow = window.open(url, target, 'toolbar=no,location=no');
+   browserwindow = cordova.InAppBrowser.open(url, target, 'toolbar=no,location=no');
+   browserwindow.addEventListener('exit', function(){
+        $('#main').show();
+   });
+   //browserwindow = window.open(url, target, 'toolbar=no,location=no');
   
     //browserwindow.addEventListener('exit', iabCloseDonation);
     browserwindow.addEventListener('loadstop', iabLoadStopDonation);
@@ -130,7 +126,9 @@ function determinStartPage()
     
     if(lasturl || dont_show_again){
         var url = lasturl.replace('#backtoapp', '');//if user clicked back
-        opengiversapp(url);
+        if( app.eventId != 'resume' ){
+            opengiversapp(url);
+        }
     }
 
     if(dont_show_again != 'true'){
@@ -258,7 +256,6 @@ function openPage(url, target, location, includebaseurl, callback, lasturl)
 }
 
 function iabLoadDonationPageInSystem(event) { 
-
     cururl = event.url;
     lasturl = storageGet('lasturl', _kioskURL);
     storageSet('lasturl', cururl);
@@ -276,9 +273,10 @@ function iabLoadDonationPageInSystem(event) {
 
     if(cururl.indexOf("backtoapp") != -1)
     {
+        //$('#main').show();
         browserwindow.close();   
     }
-    alert(getAppleSafe());
+
     if(!getAppleSafe())
     {
 

@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
   {
+    "id": "branch-cordova-sdk.Branch",
+    "file": "plugins/branch-cordova-sdk/src/index.js",
+    "pluginId": "branch-cordova-sdk",
+    "clobbers": [
+      "Branch"
+    ]
+  },
+  {
     "id": "cordova-plugin-battery-status.battery",
     "file": "plugins/cordova-plugin-battery-status/www/battery.js",
     "pluginId": "cordova-plugin-battery-status",
@@ -369,19 +377,12 @@ module.exports = [
       "navigator.notification",
       "navigator"
     ]
-  },
-  {
-    "id": "branch-cordova-sdk.Branch",
-    "file": "plugins/branch-cordova-sdk/src/branch.js",
-    "pluginId": "branch-cordova-sdk",
-    "clobbers": [
-      "Branch"
-    ]
   }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+  "branch-cordova-sdk": "3.0.0",
   "cordova-plugin-battery-status": "1.2.5",
   "cordova-plugin-camera": "2.4.1",
   "cordova-plugin-device": "1.1.7",
@@ -392,8 +393,7 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "1.7.2",
   "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
-  "cordova-plugin-vibration": "2.1.6",
-  "branch-cordova-sdk": "2.6.24"
+  "cordova-plugin-vibration": "2.1.6"
 };
 // BOTTOM OF METADATA
 });

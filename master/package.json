@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "branch-cordova-sdk": "^2.6.24",
-    "cordova-android": "~7.0.0",
+    "cordova-android": "^7.0.0",
     "cordova-ios": "^4.5.4",
     "cordova-plugin-battery-status": "~1.2.4",
     "cordova-plugin-camera": "~2.4.1",

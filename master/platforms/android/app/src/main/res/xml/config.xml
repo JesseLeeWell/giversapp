@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.continuetogive.giverapp" version="3.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <feature name="BranchSDK">
+        <param name="android-package" value="io.branch.BranchSDK" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Battery">
         <param name="android-package" value="org.apache.cordova.batterystatus.BatteryListener" />
     </feature>
@@ -34,10 +38,6 @@
     </feature>
     <feature name="Vibration">
         <param name="android-package" value="org.apache.cordova.vibration.Vibration" />
-    </feature>
-    <feature name="BranchSDK">
-        <param name="android-package" value="io.branch.BranchSDK" />
-        <param name="onload" value="true" />
     </feature>
     <branch-config>
         <branch-key value="key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD" />
@@ -82,6 +82,6 @@
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="26" />
     <preference name="KeepRunning" value="true" />
 </widget>

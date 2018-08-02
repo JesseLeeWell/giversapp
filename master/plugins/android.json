@@ -7,6 +7,9 @@
     "files": {}
   },
   "installed_plugins": {
+    "branch-cordova-sdk": {
+      "PACKAGE_NAME": "com.continuetogive.giverapp"
+    },
     "cordova-plugin-battery-status": {
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
@@ -35,9 +38,6 @@
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
     "cordova-plugin-vibration": {
-      "PACKAGE_NAME": "com.continuetogive.giverapp"
-    },
-    "branch-cordova-sdk": {
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     }
   },
