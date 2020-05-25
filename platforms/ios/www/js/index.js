@@ -274,12 +274,14 @@ function iabLoadDonationPageInSystem(event) {
             //opengiversapp();
             //window.open(_kioskURL, "_blank",'location=no');
             //alert("Taking you to our webpage to donate per Apple's terms of use.");
+            /*
             navigator.notification.alert(
                 "Taking you to our webpage to donate per Apple's terms of use.",  // message
                 null,         // callback
                 'Givers App',            // title
                 'Ok'                  // buttonName
             );
+            */
             //navigator.notification.confirm("Taking you to our webpage to donate per Apple's terms of use.", null, "Givers App", "OK");
 
             //window.history.go(-1);
