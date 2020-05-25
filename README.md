@@ -1,2 +1,0 @@
-# giversapp
-Givers App

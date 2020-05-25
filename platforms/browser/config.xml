@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.continuetogive.giverapp" version="3.4.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <branch-config>
+        <branch-key value="key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD" />
+        <uri-scheme value="giverapp" />
+        <link-domain value="continuetogive.app.link" />
+        <ios-team-release value="86DCZ8S5Q6" />
+    </branch-config>
+    <name>Givers App</name>
+    <description>
+        Continue To Give's Giver App for easy giving.
+    </description>
+    <author email="continuetogive@continuetogive.com" href="https://continuetogive.com">
+        Continue To Give
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="26" />
+    <preference name="KeepRunning" value="true" />
+</widget>
