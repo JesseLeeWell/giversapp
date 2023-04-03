@@ -1,6 +1,7 @@
 (function() {
   // properties
 
+  const fs = require("fs");
   const path = require("path");
   const xmlHelper = require("../lib/xmlHelper.js");
 
@@ -57,8 +58,13 @@
     return {
       projectRoot: getProjectRoot(context),
       projectName: getProjectName(configXml),
-      branchKey: getBranchValue(branchXml, "branch-key"),
+      branchJson: getBranchJson(context),
+      branchKey: getBranchKey(branchXml, "branch-key-live"),
+      branchKeyTest: getBranchValue(branchXml, "branch-key-test"),
+      branchTestMode: getBranchValue(branchXml, "branch-test-mode"),
       linkDomain: getBranchLinkDomains(branchXml, "link-domain"),
+      androidLinkDomain: getBranchLinkDomains(branchXml, "android-link-domain"),
+      iosLinkDomain: getBranchLinkDomains(branchXml, "ios-link-domain"),
       uriScheme: getBranchValue(branchXml, "uri-scheme"),
       iosBundleId: getBundleId(configXml, "ios"),
       iosProjectModule: getProjectModule(context),
@@ -66,7 +72,7 @@
       iosTeamDebug: getBranchValue(branchXml, "ios-team-debug"), // optional
       androidBundleId: getBundleId(configXml, "android"), // optional
       androidPrefix: getBranchValue(branchXml, "android-prefix"), // optional
-      androidTestMode: getBranchValue(branchXml, "android-testmode") // optional
+      androidTestMode: getBranchValue(branchXml, "android-testmode") // DEPRECATED optional
     };
   }
 
@@ -92,12 +98,36 @@
     return output;
   }
 
+  // Checks if branch.json exists in projectRoot and returns its path
+  function getBranchJson(context) {
+    const pathToBranchJson = path.join(context.opts.projectRoot, "branch.json");
+    let exists;
+
+    try {
+      exists = fs.existsSync(pathToBranchJson);
+    } catch(err) {
+      exists = false;
+    }
+
+    return {
+      exists: exists,
+      path: pathToBranchJson
+    };
+  }
+
   // read branch value from <branch-config>
   function getBranchValue(branchXml, key) {
     return branchXml.hasOwnProperty(key) ? branchXml[key][0].$.value : null;
   }
 
-  // read branch value from <branch-config> for multiple <link-domain>
+  // read branch value from (<branch-key> DEPRECATED)
+  // or <branch-key-live>
+  function getBranchKey(branchXml) {
+    return getBranchValue(branchXml, "branch-key-live") || getBranchValue(branchXml, "branch-key");
+  }
+
+  // read branch value from <branch-config>
+  // for multiple <link-domain>, <android-link-domain> or <ios-link-domain>
   function getBranchLinkDomains(branchXml, key) {
     const output = [];
     if (branchXml.hasOwnProperty(key)) {
@@ -151,12 +181,11 @@
     // get xcodeproj
     const projectRoot = getProjectRoot(context);
     const projectPath = path.join(projectRoot, "platforms", "ios");
-    const projectFiles = context
-      .requireCordovaModule("glob")
+    const projectFiles = require("glob")
       .sync(path.join(projectPath, "*.xcodeproj", "project.pbxproj"));
     if (projectFiles.length === 0) return;
     const pbxPath = projectFiles[0];
-    const xcodeproj = context.requireCordovaModule("xcode").project(pbxPath);
+    const xcodeproj = require("xcode").project(pbxPath);
 
     // add hash
     xcodeproj.parseSync();
@@ -166,7 +195,7 @@
       xcode: xcodeproj,
       write: function() {
         // save xcodeproj
-        const fs = context.requireCordovaModule("fs");
+        const fs = require("fs");
         fs.writeFileSync(pbxPath, xcodeproj.writeSync());
 
         // pull framework dependencies
@@ -174,12 +203,11 @@
         let frameworks = {};
 
         try {
-          frameworks = context.requireCordovaModule(frameworksFile);
+          frameworks = require(frameworksFile);
         } catch (e) {}
         // If there are no framework references, remove this file
         if (Object.keys(frameworks).length === 0) {
-          return context
-            .requireCordovaModule("shelljs")
+          return require("shelljs")
             .rm("-rf", frameworksFile);
         }
 
@@ -206,9 +234,14 @@
         'BRANCH SDK: Invalid "name" in your config.xml. Docs https://goo.gl/GijGKP'
       );
     }
-    if (preferences.branchKey === null) {
+    if (preferences.branchKey === null && preferences.branchKeyLive === null) {
       throw new Error(
-        'BRANCH SDK: Invalid "branch-key" in <branch-config> in your config.xml. Docs https://goo.gl/GijGKP'
+        'BRANCH SDK: Invalid "branch-key-live" in <branch-config> in your config.xml. Docs https://goo.gl/GijGKP'
+      );
+    }
+    if (preferences.branchKey === null && preferences.branchKeyTest === null) {
+      throw new Error(
+        'BRANCH SDK: Invalid "branch-key-test" in <branch-config> in your config.xml. Docs https://goo.gl/GijGKP'
       );
     }
     if (
@@ -220,9 +253,8 @@
       );
     }
     if (
-      preferences.linkDomain === null ||
       !/^(?!.*?www).*([a-zA-Z0-9]+(\.[a-zA-Z0-9]+)+.*)$/.test(
-        preferences.linkDomain
+        [...preferences.linkDomain, ...preferences.androidLinkDomain, preferences.iosLinkDomain]
       )
     ) {
       throw new Error(
@@ -278,6 +310,17 @@
     ) {
       throw new Error(
         'BRANCH SDK: Invalid "android-testmode" in <branch-config> in your config.xml. Docs https://goo.gl/GijGKP'
+      );
+    }
+    if (
+      !(
+        preferences.branchTestMode === "true" ||
+        preferences.branchTestMode === "false" ||
+        preferences.branchTestMode === null
+      )
+    ) {
+      throw new Error(
+        'BRANCH SDK: Invalid "branch-test-mode" in <branch-config> in your config.xml. Docs https://goo.gl/GijGKP'
       );
     }
   }

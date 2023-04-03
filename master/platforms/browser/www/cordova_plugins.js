@@ -1,6 +1,14 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/branch-cordova-sdk/src/index.js",
+        "id": "branch-cordova-sdk.Branch",
+        "pluginId": "branch-cordova-sdk",
+        "clobbers": [
+            "Branch"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-battery-status/www/battery.js",
         "id": "cordova-plugin-battery-status.battery",
         "pluginId": "cordova-plugin-battery-status",

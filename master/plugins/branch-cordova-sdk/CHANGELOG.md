@@ -1,3 +1,122 @@
+5.2.0 August 8th, 2022
+* Update iOS SDK to 1.43.1
+* Update Android SDK to 5.2.0
+* Added method to generate Branch QR codes, getBranchQRCode().
+
+5.1.0 May 27, 2022
+* Update iOS SDK to 1.42.0
+* Update Android SDK to 5.1.5
+* Update 3rd party dependencies. Of note the plist vulnerability. (Thanks Sujay-shetty)
+* Replace setDebug with setLogging and test devices. https://help.branch.io/using-branch/docs/adding-test-devices
+
+5.0.2 February 9, 2022
+* Update dependencies to latest non-breaking versions, of note the shelljs vulnerability. (Thanks again Sujay-shetty!)
+
+5.0.1 February 8, 2022
+* Remove request package (thanks for catching Sujay-shetty)
+
+5.0.0 January 21, 2022
+* Add content items support in sendBranchEvent
+* Remove sendCommerceEvent
+* Fix bug where custom data would clobber other fields when creating event in Android plugin
+* Update iOS SDK to 1.40.2
+* Update Android SDK to 5.0.15
+
+4.2.4 - May 3, 2021
+
+CORE-1898 correct iOS API signature for LATD
+Fix alternate link domain issue - Thanks MaximBelov
+Fix exist check - Thanks MaximBelov
+
+4.2.3 - April 29, 2021
+
+Update Android SDK to 5.0.8
+
+4.2.2 - April 28, 2021
+
+Update iOS SDK to 1.39.2
+Update Android SDK to 5.0.7
+
+# [4.2.1](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.2.0...v4.2.1) (2020-11-05)
+
+# [4.2.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.1.3...v4.2.0) (2020-8-26)
+
+* Update iOS SDK to 0.35.0
+
+# [4.1.3](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.1.2...v4.1.3) (2020-2-20)
+
+* Fix intra-app linking.
+
+# [4.1.2](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.1.1...v4.1.2) (2020-2-12)
+
+* Allow Cordova 8. Update readme with instructions.
+
+# [4.1.1](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.1.0...v4.1.1) (2020-2-3)
+
+* Hotfix removing typo in iOS code
+
+# [4.1.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v4.0.0...v4.1.0) (2020-2-3)
+
+* Update update iOS SDK 0.31.x
+* Update update Android SDK 4.3.2
+* Set plugin type/name and version
+
+# [4.0.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.2.0...v4.0.0) (2019-10-15)
+
+* Update iOS SDK to 0.29.1
+* Update Android SDK to 4.1.1
+* Switch to Cocoapods
+* Switch to Maven
+* Add Event Alias
+* Add CPID and LATD methods
+* Add Amazon Fire ID
+* Fix foreground linking
+
+Known issues:
+* iOS command line build fails due a cordova issue, workaround is to build from xcode.  SDK-558  https://github.com/apache/cordova-ios/issues/659
+* Android installation hooks require Android platform to be added before the plugin.  SDK-585
+* CPID and LATD methods do not work on Android.  SDK-557
+
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.1.6...v3.2.0) (2019-5-24)
+
+* Fix Cordova 9 incompatibility.
+* Fix aar not found on Android builds.
+
+<a name="3.1.6"></a>
+# [3.1.6](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.1.5...v3.1.6) (2019-2-28)
+
+* Upgraded base Branch SDKs to iOS 0.25.11 and Android 3.0.4
+
+<a name="3.1.5"></a>
+# [3.1.5](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.1.4...v3.1.5) (2018-12-05)
+
+* Fix iOS dependency issue.
+
+<a name="3.1.4"></a>
+# [3.1.4](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.1.3...v3.1.4) (2018-12-04)
+
+* Revert Cocoapods & Gradle support temporarily.([#478](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/pull/531))
+
+<a name="3.1.3"></a>
+# [3.1.3](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.1.0...v3.1.3) (2018-11-26)
+
+* Fixed open URL conflict with URI schemes on iOS. DEVEX-782 ([#478](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues/478))
+
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.0.1...v3.1.0) (2018-10-01)
+
+* Added `sendBranchEvent` for compatibility with v2/event. DEVEX-782 ([55c09b6](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/pull/485/commits/55c09b6))
+* Added Apple Search Ad methods, `delayInitToCheckForSearchAds` and `setAppleSearchAdsDebugMode`. DEVEX-767 ([1b26156]https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/commit/1b26156bd7480b2f7fe8609a0483969be3c6d850)
+* Upgraded base Branch SDKs to iOS 0.25.5 and Android 2.19.4.
+
+<a name="3.0.1"></a>
+# [3.0.1](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v3.0.0...v3.0.1) (2018-05-07)
+
+### Bug Fixes
+
+* Add check for `window.clientInformation` ([55c09b6](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/pull/485/commits/55c09b6))
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/compare/v2.7.1...v3.0.0) (2018-05-07)
 

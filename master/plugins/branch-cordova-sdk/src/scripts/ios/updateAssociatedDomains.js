@@ -1,16 +1,19 @@
-(function() {
+(function () {
   // properties
 
   const path = require("path");
   const fs = require("fs");
   const plist = require("plist");
   const mkpath = require("mkpath");
+  // TODO [codinronan 15.01.2020]: Read these from {preferences.projectName}.plist --
+  //  most people don't change them, but some do, and more importantly, some people add new ones!
   const BUILD_TYPES = ["Debug", "Release"];
   const ASSOCIATED_DOMAINS = "com.apple.developer.associated-domains";
 
   // entry
   module.exports = {
-    addAssociatedDomains: addAssociatedDomains
+    addAssociatedDomains: addAssociatedDomains,
+    updateAssociatedDomains: updateAssociatedDomains
   };
 
   // updates the associated domains from the link-domain field of the app's config.xml
@@ -29,24 +32,6 @@
   // get the xcode .entitlements and provisioning profile .plist
   function getEntitlementFiles(preferences) {
     const files = [];
-    const entitlements = path.join(
-      preferences.projectRoot,
-      "platforms",
-      "ios",
-      preferences.projectName,
-      "Resources",
-      `${preferences.projectName}.entitlements`
-    );
-    files.push(
-      path.join(
-        preferences.projectRoot,
-        "platforms",
-        "ios",
-        preferences.projectName,
-        `${preferences.projectName}.entitlements`
-      )
-    );
-    files.push(entitlements);
 
     for (let i = 0; i < BUILD_TYPES.length; i++) {
       const buildType = BUILD_TYPES[i];
@@ -107,7 +92,7 @@
   // removed previous associated domains related to Branch (will not remove link domain changes from custom domains or custom sub domains)
   function removePreviousAssociatedDomains(preferences, domains) {
     const output = [];
-    const linkDomains = preferences.linkDomain;
+    const linkDomains = [...preferences.iosLinkDomain, ...preferences.linkDomain];
 
     if (!domains) return output;
     for (let i = 0; i < domains.length; i++) {
@@ -138,10 +123,15 @@
   function updateAssociatedDomains(preferences) {
     const domainList = [];
     const prefix = "applinks:";
-    const linkDomains = preferences.linkDomain;
+    const linkDomains = [...preferences.iosLinkDomain, ...preferences.linkDomain];
 
     for (let i = 0; i < linkDomains.length; i++) {
       const linkDomain = linkDomains[i];
+
+      const isAlternateDomain = linkDomain.indexOf("-alternate") !== -1;
+      if(isAlternateDomain){
+        continue;
+      }
 
       // add link domain to associated domain
       domainList.push(prefix + linkDomain);

@@ -6,7 +6,8 @@
 
   // entry
   module.exports = {
-    writePreferences: writePreferences
+    writePreferences: writePreferences,
+    getAppLinkIntentFilterData: getAppLinkIntentFilterData
   };
 
   // injects config.xml preferences into AndroidManifest.xml file.
@@ -16,7 +17,7 @@
 
     // update manifest
     manifest.file = updateBranchMetaData(manifest.file, preferences);
-    manifest.file = updateBranchReferrerTracking(manifest.file);
+    manifest.file = removeDeprecatedInstalReferrerBroadcastReceiver(manifest.file);
     manifest.file = updateLaunchOptionToSingleTask(
       manifest.file,
       manifest.mainActivityIndex
@@ -29,8 +30,7 @@
     manifest.file = updateBranchAppLinks(
       manifest.file,
       manifest.mainActivityIndex,
-      preferences,
-      manifest.targetSdk
+      preferences
     );
 
     // save manifest
@@ -71,14 +71,11 @@
     const mainActivityIndex = getMainLaunchActivityIndex(
       manifest.manifest.application[0].activity
     );
-    const targetSdk =
-      manifest.manifest["uses-sdk"][0].$["android:targetSdkVersion"];
 
     return {
       file: manifest,
       path: pathToManifest,
-      mainActivityIndex: mainActivityIndex,
-      targetSdk: targetSdk
+      mainActivityIndex: mainActivityIndex
     };
   }
 
@@ -91,8 +88,13 @@
     const keys = ["io.branch.sdk.BranchKey", "io.branch.sdk.TestMode"];
     const vals = [
       preferences.branchKey,
-      preferences.androidTestMode || "false"
+      preferences.branchTestMode || preferences.androidTestMode || "false"
     ];
+
+    if (preferences.branchKeyTest) {
+      keys.push("io.branch.sdk.BranchKey.test");
+      vals.push(preferences.branchKeyTest);
+    }
 
     // remove old
     for (var i = 0; i < keys.length; i++) {
@@ -115,41 +117,12 @@
     return manifest;
   }
 
-  // adds to <application> for install referrer tracking (optional)
-  //    <receiver android:name="io.branch.referral.InstallListener" android:exported="true">
-  //       <intent-filter>
-  //           <action android:name="com.android.vending.INSTALL_REFERRER" />
-  //       </intent-filter>
-  //    </receiver>
-  function updateBranchReferrerTracking(manifest) {
-    let receivers = manifest.manifest.application[0].receiver || [];
+  function removeDeprecatedInstalReferrerBroadcastReceiver(manifest) { 
+    let receivers = manifest.manifest.application[0].receiver || [];  
     const androidName = "io.branch.referral.InstallListener";
+    manifest.manifest.application[0].receiver = removeBasedOnAndroidName(receivers, androidName);
 
-    // remove old
-    receivers = removeBasedOnAndroidName(receivers, androidName);
-
-    // add new
-    manifest.manifest.application[0].receiver = receivers.concat([
-      {
-        $: {
-          "android:name": androidName,
-          "android:exported": true
-        },
-        "intent-filter": [
-          {
-            action: [
-              {
-                $: {
-                  "android:name": "com.android.vending.INSTALL_REFERRER"
-                }
-              }
-            ]
-          }
-        ]
-      }
-    ]);
-
-    return manifest;
+    return manifest;  
   }
 
   // adds to main <activity>:
@@ -230,8 +203,7 @@
   function updateBranchAppLinks(
     manifest,
     mainActivityIndex,
-    preferences,
-    targetSdk
+    preferences
   ) {
     let intentFilters =
       manifest.manifest.application[0].activity[mainActivityIndex][
@@ -243,9 +215,6 @@
       "android:name": androidName,
       "android:autoVerify": "true"
     };
-    if (targetSdk && parseInt(targetSdk) < 23) {
-      delete header["android:autoVerify"];
-    }
 
     // remove
     intentFilters = removeBasedOnAndroidName(intentFilters, androidName);
@@ -285,13 +254,17 @@
   // determine the Branch link domain <data> to append to the App Link intent filter
   function getAppLinkIntentFilterData(preferences) {
     const intentFilterData = [];
-    const linkDomains = preferences.linkDomain;
+    const linkDomains = [...preferences.androidLinkDomain, ...preferences.linkDomain];
 
     for (let i = 0; i < linkDomains.length; i++) {
       const linkDomain = linkDomains[i];
 
       // app.link link domains need -alternate associated domains as well (for Deep Views)
       if (linkDomain.indexOf("app.link") !== -1) {
+        const isAlternateDomain = linkDomain.indexOf("-alternate") !== -1;
+        if(isAlternateDomain){
+          continue;
+        }
         const first = linkDomain.split(".")[0];
         const rest = linkDomain
           .split(".")

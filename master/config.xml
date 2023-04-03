@@ -1,11 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.continuetogive.giverapp" version="3.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <plugin name="branch-cordova-sdk" spec="3.0.0" />
     <branch-config>
         <branch-key value="" />
-        <uri-scheme value="" />
-        <link-domain value="" />
-        <ios-team-release value="" />
+        <uri-scheme value="giversapp" />
+        <link-domain value="com.continuetogive.giverapp" />
     </branch-config>
     <name>Givers App</name>
     <description>
@@ -35,18 +33,18 @@
         <icon density="xhdpi" src="www/res/icon/android/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="www/res/icon/android/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="www/res/icon/android/drawable-xxxhdpi-icon.png" />
-        <splash density="land-ldpi" src="www/res/screen/android/drawable-land-ldpi-screen.png" />
-        <splash density="land-mdpi" src="www/res/screen/android/drawable-land-mdpi-screen.png" />
-        <splash density="land-hdpi" src="www/res/screen/android/drawable-land-hdpi-screen.png" />
-        <splash density="land-xhdpi" src="www/res/screen/android/drawable-land-xhdpi-screen.png" />
-        <splash density="land-xxhdpi" src="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
-        <splash density="land-xxxhdpi" src="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
-        <splash density="port-ldpi" src="www/res/screen/android/drawable-port-ldpi-screen.png" />
-        <splash density="port-mdpi" src="www/res/screen/android/drawable-port-mdpi-screen.png" />
-        <splash density="port-hdpi" src="www/res/screen/android/drawable-port-hdpi-screen.png" />
-        <splash density="port-xhdpi" src="www/res/screen/android/drawable-port-xhdpi-screen.png" />
-        <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
-        <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
+        <preference density="land-ldpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-ldpi-screen.png" />
+        <preference density="land-mdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-mdpi-screen.png" />
+        <preference density="land-hdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-hdpi-screen.png" />
+        <preference density="land-xhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-xhdpi-screen.png" />
+        <preference density="land-xxhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-xxhdpi-screen.png" />
+        <preference density="land-xxxhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-land-xxxhdpi-screen.png" />
+        <preference density="port-ldpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-ldpi-screen.png" />
+        <preference density="port-mdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-mdpi-screen.png" />
+        <preference density="port-hdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-hdpi-screen.png" />
+        <preference density="port-xhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-xhdpi-screen.png" />
+        <preference density="port-xxhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
+        <preference density="port-xxxhdpi" name="AndroidWindowSplashScreenAnimatedIcon" value="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
         <icon height="57" platform="ios" src="www/res/icon/ios/icon.png" width="57" />
@@ -114,5 +112,4 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <plugin name="cordova-plugin-inappbrowser" spec="~1.7.1" />
-    <engine name="ios" spec="^4.5.4" />
 </widget>

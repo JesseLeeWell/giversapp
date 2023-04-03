@@ -1,42 +1,68 @@
 {
-  "name": "branch-cordova-sdk",
-  "description": "Branch Metrics Cordova SDK",
-  "main": "src/index.js",
-  "version": "3.0.0",
-  "homepage": "https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking.git"
+  "_from": "branch-cordova-sdk",
+  "_id": "branch-cordova-sdk@5.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-nglvDlUKsGox72Pz8E1HA5HuNKbgyI/FbtdCbJz/4ZZQqFEZDIrAE0/RpRBj15w5bKS+YbjBvIgLkyoPiLzzIA==",
+  "_location": "/branch-cordova-sdk",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "branch-cordova-sdk",
+    "name": "branch-cordova-sdk",
+    "escapedName": "branch-cordova-sdk",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
   },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/branch-cordova-sdk/-/branch-cordova-sdk-5.2.0.tgz",
+  "_shasum": "9fcede870a16dbcdda6043998c06b2bf25e189cc",
+  "_spec": "branch-cordova-sdk",
+  "_where": "C:\\Users\\User\\Documents\\Continuetogive\\Apps\\giversapp\\master",
   "bugs": {
     "url": "https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking/issues"
   },
-  "platforms": [
-    "android",
-    "ios"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "validate": "            echo 'run validation scripts';     node ./src/scripts/npm/updatePluginXml",
-    "travis-deploy-once": "  echo 'prevent multiple deploys';   travis-deploy-once",
-    "commitmsg": "           echo 'validate commit messages';   commitlint -e $GIT_PARAMS",
-    "precommit": "           echo 'run prettier on commit';     lint-staged",
-    "examples": "            echo 'generate examples';          node ./src/scripts/examples",
-    "prettier": "            echo 'run prettier';               prettier --write './{src,testbed,tests}/**/*.js'",
-    "lint": "                echo 'run code linter';            eslint --ext=js --fix ./src",
-    "semantic-release": "    echo 'run continuous integration'; semantic-release"
+  "bundleDependencies": false,
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "dependencies": {
+    "glob": "^8.0.3",
     "mkpath": "^1.0.0",
-    "node-version-compare": "^1.0.1",
-    "plist": "^3.0.1",
-    "request": "^2.85.0",
-    "xml2js": "^0.4.19"
+    "node-version-compare": "^1.0.3",
+    "plist": "^3.0.5",
+    "shelljs": "^0.8.5",
+    "xcode": "^3.0.1",
+    "xml2js": "^0.4.23"
   },
+  "deprecated": false,
+  "description": "Branch Metrics Cordova SDK",
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
+    "eslint": "^8.16.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "fs": "0.0.1-security",
+    "husky": "^8.0.1",
+    "lint-staged": "^12.4.2",
+    "prettier": "^2.6.2"
+  },
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=8.0.0"
+    }
+  ],
   "eslintConfig": {
     "extends": [
-      "airbnb-base/legacy",
-      "prettier"
+      "airbnb-base/legacy"
     ],
     "rules": {
       "no-console": 0,
@@ -48,59 +74,30 @@
       "Branch": true
     }
   },
-  "release": {
-    "verifyConditions": [
-      "@semantic-release/changelog",
-      "@semantic-release/github",
-      "@semantic-release/git",
-      "@semantic-release/npm"
-    ],
-    "verifyRelease": [
-      {
-        "path": "@semantic-release/exec",
-        "cmd": "node ./src/scripts/npm/updateNpmVersion"
-      }
-    ],
-    "prepare": [
-      {
-        "path": "@semantic-release/changelog",
-        "changelogFile": "CHANGELOG.md"
-      },
-      "@semantic-release/git"
-    ],
-    "publish": [
-      "@semantic-release/github",
-      "@semantic-release/npm"
-    ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
+  "homepage": "https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking",
+  "license": "MIT",
   "lint-staged": {
     "src/*.{js,json,css,md}": [
       "prettier --write",
       "git add"
     ]
   },
-  "devDependencies": {
-    "@commitlint/cli": "^6.2.0",
-    "@commitlint/config-conventional": "^6.1.3",
-    "@semantic-release/changelog": "^2.0.2",
-    "@semantic-release/exec": "^2.2.4",
-    "@semantic-release/git": "^4.0.3",
-    "@semantic-release/github": "^4.2.15",
-    "@semantic-release/npm": "^3.2.5",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jest": "^21.15.1",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1",
-    "semantic-release": "^15.2.0",
-    "travis-deploy-once": "^5.0.0"
-  }
+  "main": "src/index.js",
+  "name": "branch-cordova-sdk",
+  "platforms": [
+    "android",
+    "ios"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BranchMetrics/cordova-ionic-phonegap-branch-deep-linking.git"
+  },
+  "scripts": {
+    "commitmsg": " echo 'validate commit messages'; commitlint -e $GIT_PARAMS",
+    "examples": "  echo 'generate examples';        node ./src/scripts/examples",
+    "lint": "      echo 'run code linter';          eslint --ext=js --fix ./src",
+    "precommit": " echo 'run prettier on commit';   lint-staged",
+    "prettier": "  echo 'run prettier';             prettier --write './{src,testbed,tests}/**/*.js'"
+  },
+  "version": "5.2.0"
 }
