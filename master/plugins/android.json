@@ -14,6 +14,7 @@
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
     "cordova-plugin-camera": {
+      "ANDROIDX_CORE_VERSION": "1.6.+",
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
     "cordova-plugin-device": {
@@ -23,6 +24,7 @@
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
     "cordova-plugin-geolocation": {
+      "GPS_REQUIRED": "true",
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     },
     "cordova-plugin-globalization": {
@@ -43,6 +45,7 @@
   },
   "dependent_plugins": {
     "cordova-plugin-file": {
+      "ANDROIDX_WEBKIT_VERSION": "1.4.0",
       "PACKAGE_NAME": "com.continuetogive.giverapp"
     }
   }

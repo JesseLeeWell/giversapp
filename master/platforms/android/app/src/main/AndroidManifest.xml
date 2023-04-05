@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<manifest android:hardwareAccelerated="true" android:versionCode="30300" android:versionName="3.3.0" package="com.continuetogive.giverapp" xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest android:hardwareAccelerated="true" android:versionCode="30400" android:versionName="3.4.0" package="com.continuetogive.giverapp" xmlns:android="http://schemas.android.com/apk/res/android">
   <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true"/>
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
   <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-  <uses-permission android:name="android.permission.RECORD_VIDEO"/>
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
   <uses-permission android:name="android.permission.VIBRATE"/>
@@ -20,7 +19,7 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="giversapp"/>
+        <data android:scheme="giverapp"/>
       </intent-filter>
       <intent-filter android:name="io.branch.sdk.AppLink" android:autoVerify="true">
         <action android:name="android.intent.action.VIEW"/>
@@ -29,11 +28,26 @@
         <data android:host="com.continuetogive.giverapp" android:scheme="https"/>
       </intent-filter>
     </activity>
-    <provider android:authorities="${applicationId}.provider" android:exported="false" android:grantUriPermissions="true" android:name="android.support.v4.content.FileProvider">
-      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/provider_paths"/>
+    <provider android:authorities="${applicationId}.cordova.plugin.camera.provider" android:exported="false" android:grantUriPermissions="true" android:name="org.apache.cordova.camera.FileProvider">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths"/>
     </provider>
     <meta-data android:name="io.branch.sdk.BranchKey" android:value=""/>
     <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
   </application>
-  <uses-feature android:name="android.hardware.location.gps"/>
+  <queries>
+    <intent>
+      <action android:name="android.media.action.IMAGE_CAPTURE"/>
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.GET_CONTENT"/>
+    </intent>
+    <intent>
+      <action android:name="android.intent.action.PICK"/>
+    </intent>
+    <intent>
+      <action android:name="com.android.camera.action.CROP"/>
+      <data android:mimeType="image/*" android:scheme="content"/>
+    </intent>
+  </queries>
+  <uses-feature android:name="android.hardware.location.gps" android:required="true"/>
 </manifest>

@@ -20,6 +20,67 @@
 -->
 # Release Notes
 
+### 4.0.0 (May 25, 2022)
+
+* [GH-238](https://github.com/apache/cordova-plugin-media-capture/pull/238) dep!: bump `cordova-plugin-file@^7.0.0`
+* [GH-248](https://github.com/apache/cordova-plugin-media-capture/pull/248) test: remove `cordova-plugin-media` dependency
+* [GH-247](https://github.com/apache/cordova-plugin-media-capture/pull/247) chore: bump `cordovaDependencies` next next major cordova requirement
+* [GH-246](https://github.com/apache/cordova-plugin-media-capture/pull/246) chore: rebuilt `package-lock` w/ v2
+* [GH-192](https://github.com/apache/cordova-plugin-media-capture/pull/192) fix(android): Unify and fix permission check
+* [GH-231](https://github.com/apache/cordova-plugin-media-capture/pull/231) ci(ios): update workflow w/ **iOS** 15
+* [GH-230](https://github.com/apache/cordova-plugin-media-capture/pull/230) ci: add `action-badge`
+* [GH-229](https://github.com/apache/cordova-plugin-media-capture/pull/229) ci: remove `travis` & `appveyor`
+* [GH-228](https://github.com/apache/cordova-plugin-media-capture/pull/228) ci: add `gh-actions` workflows
+* [GH-200](https://github.com/apache/cordova-plugin-media-capture/pull/200) fix(android): remove unknown permission `android.permission.RECORD_VIDEO`
+* [GH-203](https://github.com/apache/cordova-plugin-media-capture/pull/203) ci: add node-14.x to workflow
+* [GH-193](https://github.com/apache/cordova-plugin-media-capture/pull/193) chore: clean up `package.json`
+* [GH-189](https://github.com/apache/cordova-plugin-media-capture/pull/189) ci(travis): update osx xcode image
+* [GH-177](https://github.com/apache/cordova-plugin-media-capture/pull/177) breaking(ios): remove code warnings
+* [GH-188](https://github.com/apache/cordova-plugin-media-capture/pull/188) ci(travis): updates **Android** API level
+* [GH-180](https://github.com/apache/cordova-plugin-media-capture/pull/180) chore: adds `package-lock` file
+* [GH-179](https://github.com/apache/cordova-plugin-media-capture/pull/179) refactor(eslint): use `cordova-eslint` /w fix
+* [GH-178](https://github.com/apache/cordova-plugin-media-capture/pull/178) chore(npm): use short notation in `package.json`
+* chore(asf): update git notification settings
+* Update CONTRIBUTING.md
+* [GH-165](https://github.com/apache/cordova-plugin-media-capture/pull/165) ci: updates Node.js versions
+* [GH-164](https://github.com/apache/cordova-plugin-media-capture/pull/164) chore(npm): improve ignore list
+* [GH-161](https://github.com/apache/cordova-plugin-media-capture/pull/161) Small javadoc fix
+* ci(travis): upgrade to node 8
+
+### 3.0.3 (Jun 19, 2019)
+
+-   fix(android): Catch ActivityNotFoundException ([#104](https://github.com/apache/cordova-plugin-media-capture/issues/104)) ([`f69ba2a`](https://github.com/apache/cordova-plugin-media-capture/commit/f69ba2a))
+-   fix(android): [CB-14260](https://issues.apache.org/jira/browse/CB-14260) (android) captureImage permission denial on android 8.1 ([#95](https://github.com/apache/cordova-plugin-media-capture/issues/95)) ([`3755f9f`](https://github.com/apache/cordova-plugin-media-capture/commit/3755f9f))
+-   docs: remove outdated translations ([`6422b2b`](https://github.com/apache/cordova-plugin-media-capture/commit/6422b2b))
+-   build: add `.npmignore` to remove unneeded files from npm package ([`586f917`](https://github.com/apache/cordova-plugin-media-capture/commit/586f917))
+-   build: add `.gitattributes` to force LF (instead of possible CRLF on Windows) ([`246ce57`](https://github.com/apache/cordova-plugin-media-capture/commit/246ce57))
+-   ci(travis): Update Travis CI configuration for new paramedic ([#134](https://github.com/apache/cordova-plugin-media-capture/issues/134)) ([`f59af25`](https://github.com/apache/cordova-plugin-media-capture/commit/f59af25))
+-   chore(github): Add or update GitHub pull request and issue template ([`e5a982e`](https://github.com/apache/cordova-plugin-media-capture/commit/e5a982e))
+-   docs: remove JIRA link ([`c3928c8`](https://github.com/apache/cordova-plugin-media-capture/commit/c3928c8))
+-   ci(travis): also accept terms for android sdk `android-27` ([`59966ac`](https://github.com/apache/cordova-plugin-media-capture/commit/59966ac))
+-   chore(types): Add CaptureError.CAPTURE_PERMISSION_DENIED to type declaration file [#98](https://github.com/apache/cordova-plugin-media-capture/issues/98) ([`eff0128`](https://github.com/apache/cordova-plugin-media-capture/commit/eff0128), [`5fb4917`](https://github.com/apache/cordova-plugin-media-capture/commit/5fb4917))
+
+### 3.0.2 (Apr 12, 2018)
+* [CB-13866](https://issues.apache.org/jira/browse/CB-13866): **iOS** fix Camera opens in portrait orientation on iphones
+
+### 3.0.1 (Dec 27, 2017)
+* [CB-13707](https://issues.apache.org/jira/browse/CB-13707) Fix to allow 3.0.0 version install (#88)
+* Bump cordova-plugin-file dependency to 6.0.0
+
+### 3.0.0 (Dec 15, 2017)
+* [CB-13669](https://issues.apache.org/jira/browse/CB-13669) : Remove deprecated plugins
+
+### 2.0.0 (Nov 06, 2017)
+* [CB-13520](https://issues.apache.org/jira/browse/CB-13520) (all): Add 'protective' entry to `cordovaDependencies`
+* [CB-13266](https://issues.apache.org/jira/browse/CB-13266) (ios): Remove **iOS** usage descriptions
+* [CB-13473](https://issues.apache.org/jira/browse/CB-13473) (CI) Removed **Browser** builds from AppVeyor
+* [CB-13294](https://issues.apache.org/jira/browse/CB-13294) Remove `cordova-plugin-compat`
+* [CB-13299](https://issues.apache.org/jira/browse/CB-13299) (CI) Fix **Android** builds
+* [CB-12895](https://issues.apache.org/jira/browse/CB-12895) added `eslint` and removed `jshint`
+* [CB-13028](https://issues.apache.org/jira/browse/CB-13028) (CI) **Browser** builds on Travis and AppVeyor
+* [CB-12882](https://issues.apache.org/jira/browse/CB-12882) (ios): adds support for permissions checks for `captureVideo` and `captureImage` methods
+* [CB-12847](https://issues.apache.org/jira/browse/CB-12847) added `bugs` entry to `package.json`.
+
 ### 1.4.3 (Apr 27, 2017)
 * [CB-12622](https://issues.apache.org/jira/browse/CB-12622) Added **Android 6.0** build badges to `README`
 * [CB-12685](https://issues.apache.org/jira/browse/CB-12685) added `package.json` to tests folder

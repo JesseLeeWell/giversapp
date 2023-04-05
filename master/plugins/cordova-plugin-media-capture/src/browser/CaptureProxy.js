@@ -17,9 +17,7 @@
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
-
-/*global require, module*/
+ */
 
 var MediaFile = require('cordova-plugin-media-capture.MediaFile');
 var MediaFileData = require('cordova-plugin-media-capture.MediaFileData');
@@ -30,10 +28,10 @@ var CaptureError = require('cordova-plugin-media-capture.CaptureError');
  * @param  {String} dataURI Data URI to convert
  * @return {Blob}           Blob, covnerted from DataURI String
  */
-function dataURItoBlob(dataURI) {
+function dataURItoBlob (dataURI) {
     // convert base64 to raw binary data held in a string
     // doesn't handle URLEncoded DataURIs
-    var byteString = atob(dataURI.split(',')[1]);
+    var byteString = atob(dataURI.split(',')[1]); // eslint-disable-line no-undef
 
     // separate out the mime component
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
@@ -46,26 +44,26 @@ function dataURItoBlob(dataURI) {
     }
 
     // write the ArrayBuffer to a blob, and you're done
-    return new Blob([ab], { type: mimeString });
+    return new Blob([ab], { type: mimeString }); // eslint-disable-line no-undef
 }
 
 /**
  * Creates basic camera UI with preview 'video' element and 'Cancel' button
  * Capture starts, when you clicking on preview.
  */
-function CameraUI() {
-
-    // Root element for preview 
+function CameraUI () {
+    // Root element for preview
     var container = document.createElement('div');
-    container.style.cssText = "left: 0px; top: 0px; width: 100%; height: 100%; position: fixed; z-index:9999;" +
-                                   "padding: 40px; background-color: rgba(0,0,0,0.75);" + 
-                                   "text-align:center; visibility: hidden";
+    container.style.cssText =
+        'left: 0px; top: 0px; width: 100%; height: 100%; position: fixed; z-index:9999;' +
+        'padding: 40px; background-color: rgba(0,0,0,0.75);' +
+        'text-align:center; visibility: hidden';
 
     // Set up root element contetnts
     container.innerHTML =
         '<div id="captureHint" style="height:100%; position:relative; display:inline-flex; align-content:flex-start;">' +
         '<h2 style="position: absolute; width: 100%; background-color: rgba(255,255,255,0.25); margin: 0">' +
-            'Click on preview to capture image. Click outside of preview to cancel.</h1>' + 
+        'Click on preview to capture image. Click outside of preview to cancel.</h1>' +
         '<video id="capturePreview" style="height: 100%"></video>' +
         '</div>';
 
@@ -91,7 +89,7 @@ function CameraUI() {
  * @param  {Function} successCB Success callback, that accepts data URL of captured image
  * @param  {Function} errorCB   Error callback
  */
-CameraUI.prototype.startPreview = function(count, successCB, errorCB) {
+CameraUI.prototype.startPreview = function (count, successCB, errorCB) {
     var that = this;
 
     this.preview.onclick = function (e) {
@@ -114,15 +112,19 @@ CameraUI.prototype.startPreview = function(count, successCB, errorCB) {
         errorCB(new CaptureError(CaptureError.CAPTURE_NO_MEDIA_FILES));
     };
 
-    navigator.getUserMedia({video: true}, function (previewStream) {
-        // Save video stream to be able to stop it later 
-        that._previewStream = previewStream;
-        that.preview.src = URL.createObjectURL(previewStream);
-        // We don't need to set visibility = true for preview element
-        // since this will be done automatically in onplay event handler
-    }, function (/*err*/) {
-        errorCB(new CaptureError(CaptureError.CAPTURE_INTERNAL_ERR));
-    });
+    navigator.getUserMedia(
+        { video: true },
+        function (previewStream) {
+            // Save video stream to be able to stop it later
+            that._previewStream = previewStream;
+            that.preview.src = URL.createObjectURL(previewStream); // eslint-disable-line no-undef
+            // We don't need to set visibility = true for preview element
+            // since this will be done automatically in onplay event handler
+        },
+        function (/* err */) {
+            errorCB(new CaptureError(CaptureError.CAPTURE_INTERNAL_ERR));
+        }
+    );
 };
 
 /**
@@ -138,22 +140,20 @@ CameraUI.prototype.destroyPreview = function () {
     }
 };
 
-
 module.exports = {
-    captureAudio:function(successCallback, errorCallback) {
+    captureAudio: function (successCallback, errorCallback) {
         if (errorCallback) {
             errorCallback(new CaptureError(CaptureError.CAPTURE_NOT_SUPPORTED));
         }
     },
 
-    captureVideo:function (successCallback, errorCallback) {
+    captureVideo: function (successCallback, errorCallback) {
         if (errorCallback) {
             errorCallback(new CaptureError(CaptureError.CAPTURE_NOT_SUPPORTED));
         }
     },
 
-    captureImage:function (successCallback, errorCallback, args) {
-
+    captureImage: function (successCallback, errorCallback, args) {
         var fail = function (code) {
             if (errorCallback) {
                 errorCallback(new CaptureError(code || CaptureError.CAPTURE_INTERNAL_ERR));
@@ -171,10 +171,8 @@ module.exports = {
         // Counter for already taken images
         var imagesTaken = 0;
 
-        navigator.getUserMedia = navigator.getUserMedia ||
-                         navigator.webkitGetUserMedia ||
-                         navigator.mozGetUserMedia ||
-                         navigator.msGetUserMedia;
+        navigator.getUserMedia =
+            navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
         if (!navigator.getUserMedia) {
             fail(CaptureError.CAPTURE_NOT_SUPPORTED);
@@ -182,45 +180,60 @@ module.exports = {
         }
 
         var ui = new CameraUI();
-        ui.startPreview(limit, function (data) {
-            // Check if we're done with capture. If so, then destroy UI
-            if (++imagesTaken >= limit) {
+        ui.startPreview(
+            limit,
+            function (data) {
+                // Check if we're done with capture. If so, then destroy UI
+                if (++imagesTaken >= limit) {
+                    ui.destroyPreview();
+                }
+
+                // Array of resultant MediaFiles
+                var mediaFiles = [];
+
+                // save data to file here
+                window.requestFileSystem(
+                    window.TEMPORARY,
+                    data.length * limit,
+                    function (fileSystem) {
+                        // If we need to capture multiple files, then append counter to filename
+                        var fileName = limit <= 1 ? 'image.jpg' : 'image' + imagesTaken + '.jpg';
+                        fileSystem.root.getFile(
+                            fileName,
+                            { create: true },
+                            function (file) {
+                                file.createWriter(function (writer) {
+                                    writer.onwriteend = function () {
+                                        file.getMetadata(function (meta) {
+                                            mediaFiles.push(
+                                                new MediaFile(file.name, file.toURL(), 'image/jpeg', meta.modificationTime, meta.size)
+                                            );
+                                            // Check if we're done with capture. If so, then call a successCallback
+                                            if (imagesTaken >= limit) {
+                                                successCallback(mediaFiles);
+                                            }
+                                        }, fail);
+                                    };
+                                    writer.onerror = fail;
+                                    // Since success callback for start preview returns
+                                    // a base64 encoded string, we need to convert it to blob first
+                                    writer.write(dataURItoBlob(data));
+                                });
+                            },
+                            fail
+                        );
+                    },
+                    fail
+                );
+            },
+            function (err) {
                 ui.destroyPreview();
+                fail(err.code);
             }
-
-            // Array of resultant MediaFiles
-            var mediaFiles = [];
-
-            // save data to file here
-            window.requestFileSystem(window.TEMPORARY, data.length * limit, function (fileSystem) {
-                // If we need to capture multiple files, then append counter to filename
-                var fileName = limit <= 1 ? 'image.jpg' : 'image' + imagesTaken + '.jpg';
-                fileSystem.root.getFile(fileName, {create: true}, function (file) {
-                    file.createWriter(function (writer) {
-                        writer.onwriteend = function () {
-                            file.getMetadata(function (meta) {
-                                mediaFiles.push(new MediaFile(file.name, file.toURL(), 'image/jpeg', meta.modificationTime, meta.size));
-                                // Check if we're done with capture. If so, then call a successCallback
-                                if (imagesTaken >= limit) {
-                                    successCallback(mediaFiles);
-                                }
-                            }, fail);
-                        };
-                        writer.onerror = fail;
-                        // Since success callback for start preview returns
-                        // a base64 encoded string, we need to convert it to blob first
-                        writer.write(dataURItoBlob(data));
-                    });
-                }, fail);
-            }, fail);
-        }, function (err) {
-            ui.destroyPreview();
-            fail(err.code);
-        });
+        );
     },
 
     getFormatData: function (successCallback, errorCallback, args) {
-
         var img = document.createElement('img');
         img.src = args[0];
         img.onload = function () {
@@ -231,4 +244,4 @@ module.exports = {
     }
 };
 
-require("cordova/exec/proxy").add("Capture",module.exports);
+require('cordova/exec/proxy').add('Capture', module.exports);

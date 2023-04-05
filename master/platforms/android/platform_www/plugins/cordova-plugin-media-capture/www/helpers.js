@@ -18,11 +18,11 @@ cordova.define("cordova-plugin-media-capture.helpers", function(require, exports
  * specific language governing permissions and limitations
  * under the License.
  *
-*/
+ */
 
 var MediaFile = require('./MediaFile');
 
-function wrapMediaFiles(pluginResult) {
+function wrapMediaFiles (pluginResult) {
     var mediaFiles = [];
     var i;
     for (i = 0; i < pluginResult.length; i++) {
@@ -43,4 +43,5 @@ function wrapMediaFiles(pluginResult) {
 module.exports = {
     wrapMediaFiles: wrapMediaFiles
 };
+
 });

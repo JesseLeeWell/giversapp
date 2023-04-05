@@ -19,10 +19,8 @@
  *
 */
 
-FILESYSTEM_PROTOCOL = "cdvfile";
-
 module.exports = {
-    __format__: function(fullPath, nativeUrl) {
+    __format__: function (fullPath, nativeUrl) {
         var path;
         var contentUrlMatch = /^content:\/\//.exec(nativeUrl);
         if (contentUrlMatch) {
@@ -36,14 +34,13 @@ module.exports = {
             if (!/^\//.test(path)) {
                 path = '/' + path;
             }
-            
+
             var m = /\?.*/.exec(nativeUrl);
             if (m) {
                 path += m[0];
             }
         }
 
-        return FILESYSTEM_PROTOCOL + '://localhost/' + this.name + path;
+        return window.location.origin + '/__cdvfile_' + this.name + '__' + path;
     }
 };
-

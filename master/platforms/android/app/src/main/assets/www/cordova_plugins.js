@@ -223,6 +223,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "runs": true
     },
     {
+      "id": "cordova-plugin-file.androidEntry",
+      "file": "plugins/cordova-plugin-file/www/android/Entry.js",
+      "pluginId": "cordova-plugin-file",
+      "merges": [
+        "Entry"
+      ]
+    },
+    {
       "id": "cordova-plugin-file.androidFileSystem",
       "file": "plugins/cordova-plugin-file/www/android/FileSystem.js",
       "pluginId": "cordova-plugin-file",
@@ -280,8 +288,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
       "pluginId": "cordova-plugin-inappbrowser",
       "clobbers": [
-        "cordova.InAppBrowser.open",
-        "window.open"
+        "cordova.InAppBrowser.open"
       ]
     },
     {
@@ -357,8 +364,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "file": "plugins/cordova-plugin-network-information/www/network.js",
       "pluginId": "cordova-plugin-network-information",
       "clobbers": [
-        "navigator.connection",
-        "navigator.network.connection"
+        "navigator.connection"
       ]
     },
     {
@@ -368,29 +374,20 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "Connection"
       ]
-    },
-    {
-      "id": "cordova-plugin-vibration.notification",
-      "file": "plugins/cordova-plugin-vibration/www/vibration.js",
-      "pluginId": "cordova-plugin-vibration",
-      "merges": [
-        "navigator.notification",
-        "navigator"
-      ]
     }
   ];
   module.exports.metadata = {
     "branch-cordova-sdk": "5.1.0",
-    "cordova-plugin-battery-status": "1.2.5",
-    "cordova-plugin-camera": "2.4.1",
-    "cordova-plugin-device": "1.1.7",
-    "cordova-plugin-dialogs": "1.3.4",
-    "cordova-plugin-file": "4.3.3",
-    "cordova-plugin-geolocation": "2.4.3",
-    "cordova-plugin-globalization": "1.0.9",
-    "cordova-plugin-inappbrowser": "1.7.2",
-    "cordova-plugin-media-capture": "1.4.3",
-    "cordova-plugin-network-information": "1.3.4",
-    "cordova-plugin-vibration": "2.1.6"
+    "cordova-plugin-battery-status": "2.0.3",
+    "cordova-plugin-camera": "6.0.0",
+    "cordova-plugin-device": "2.1.0",
+    "cordova-plugin-dialogs": "2.0.2",
+    "cordova-plugin-file": "7.0.0",
+    "cordova-plugin-geolocation": "4.1.0",
+    "cordova-plugin-globalization": "1.11.0",
+    "cordova-plugin-inappbrowser": "5.0.0",
+    "cordova-plugin-media-capture": "4.0.0",
+    "cordova-plugin-network-information": "3.0.0",
+    "cordova-plugin-vibration": "3.1.1"
   };
 });
