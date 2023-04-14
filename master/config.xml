@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.continuetogive.giverapp" version="3.4.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.continuetogive.giverapp" version="3.4.2" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <branch-config>
-        <branch-key value="" />
+        <branch-key value="key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD" />
         <uri-scheme value="giverapp" />
-        <link-domain value="com.continuetogive.giverapp" />
+        <link-domain value="continuetogive.app.link" />
+        <link-domain value="continuetogive-alternate.app.link" />
     </branch-config>
     <name>Givers App</name>
     <description>

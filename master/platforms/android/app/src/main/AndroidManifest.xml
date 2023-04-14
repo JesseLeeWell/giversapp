@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<manifest android:hardwareAccelerated="true" android:versionCode="30401" android:versionName="3.4.1" package="com.continuetogive.giverapp" xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest android:hardwareAccelerated="true" android:versionCode="30402" android:versionName="3.4.2" package="com.continuetogive.giverapp" xmlns:android="http://schemas.android.com/apk/res/android">
   <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:resizeable="true" android:smallScreens="true" android:xlargeScreens="true"/>
   <uses-permission android:name="android.permission.INTERNET"/>
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -25,13 +25,14 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:host="com.continuetogive.giverapp" android:scheme="https"/>
+        <data android:host="continuetogive.app.link" android:scheme="https"/>
+        <data android:host="continuetogive-alternate.app.link" android:scheme="https"/>
       </intent-filter>
     </activity>
     <provider android:authorities="${applicationId}.cordova.plugin.camera.provider" android:exported="false" android:grantUriPermissions="true" android:name="org.apache.cordova.camera.FileProvider">
       <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/camera_provider_paths"/>
     </provider>
-    <meta-data android:name="io.branch.sdk.BranchKey" android:value=""/>
+    <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD"/>
     <meta-data android:name="io.branch.sdk.TestMode" android:value="false"/>
   </application>
   <queries>
