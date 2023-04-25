@@ -8,31 +8,16 @@
     ],
     "plugins": {
       "branch-cordova-sdk": {},
-      "cordova-plugin-battery-status": {},
-      "cordova-plugin-camera": {},
       "cordova-plugin-device": {},
       "cordova-plugin-dialogs": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-geolocation": {},
-      "cordova-plugin-globalization": {},
-      "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-media-capture": {},
-      "cordova-plugin-network-information": {},
-      "cordova-plugin-vibration": {}
+      "cordova-plugin-inappbrowser": {}
     }
   },
   "dependencies": {
     "branch-cordova-sdk": "^5.2.0",
-    "cordova-plugin-battery-status": "^2.0.3",
-    "cordova-plugin-camera": "^6.0.0",
     "cordova-plugin-device": "^2.1.0",
     "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-geolocation": "^4.1.0",
-    "cordova-plugin-globalization": "^1.11.0",
-    "cordova-plugin-inappbrowser": "^5.0.0",
-    "cordova-plugin-media-capture": "^4.0.0",
-    "cordova-plugin-network-information": "^3.0.0",
-    "cordova-plugin-vibration": "^3.1.1"
+    "cordova-plugin-inappbrowser": "^5.0.0"
   },
   "devDependencies": {
     "cordova-android": "^11.0.0",
