@@ -1,26 +1,23 @@
 {
-  "name": "com.continuetogive.giverapp",
-  "version": "3.3.0",
-  "displayName": "Givers App",
-  "cordova": {
-    "platforms": [
-      "android"
-    ],
-    "plugins": {
-      "branch-cordova-sdk": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-dialogs": {},
-      "cordova-plugin-inappbrowser": {}
-    }
-  },
-  "dependencies": {
-    "branch-cordova-sdk": "^5.2.0",
-    "cordova-plugin-device": "^2.1.0",
-    "cordova-plugin-dialogs": "^2.0.2",
-    "cordova-plugin-inappbrowser": "^5.0.0"
+  "name": "giversapp",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "npx vite build && npx cap sync"
   },
   "devDependencies": {
-    "cordova-android": "^11.0.0",
-    "cordova-plugin-file": "^7.0.0"
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^6.2.0",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/app": "^6.0.2",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/preferences": "^6.0.3",
+    "capacitor-branch-deep-links": "^8.3.0",
+    "cordova-plugin-inappbrowser": "^6.0.0",
+    "jquery": "^3.7.1"
   }
 }

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Givers App</string>
+    <string name="title_activity_main">Givers App</string>
+    <string name="package_name">com.continuetogive.giverapp</string>
+    <string name="custom_url_scheme">com.continuetogive.giverapp</string>
+    <string name="applink_host">continuetogive.app.link</string>
+    <string name="applink_host_alternate">continuetogive-alternate.app.link</string>
+    <string name="deeplink_scheme">giverapp</string>
+    <string name="branch_key">key_live_dmuxe6ypa7sJ7oMyyvoxZappBBkfFfVD</string>
+    <bool name="branch_test_mode">false</bool>
+</resources>
