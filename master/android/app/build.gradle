@@ -7,7 +7,7 @@ android {
         applicationId "com.continuetogive.giverapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 30401
+        versionCode 30409
         versionName "3.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
