@@ -1,14 +1,15 @@
 import { App } from "@capacitor/app";
 import { Capacitor } from "@capacitor/core";
-import { _kiosklicense, _kioskURL, DEV_MODE } from "./settings";
+import { _kiosklicense, _kioskURL, _baseKioskURL, DEV_MODE } from "./settings";
 import { Preferences } from "@capacitor/preferences";
 import $ from "jquery";
+import { BranchDeepLinks } from "capacitor-branch-deep-links";
 
 var browserwindow = null;
 var app = {
   initialize: () => {
     setAppleSafe(run);
-  }
+  },
 };
 
 function openGiversApp(url) {
@@ -171,5 +172,15 @@ button.onclick = () => {
   openGiversApp(_kioskURL);
 };
 
+BranchDeepLinks.addListener("init", (data) => {
+  console.log("BranchDeepLinks init", data.referringParams);
+  if (data.referringParams["+clicked_branch_link"]) {
+    if (data.referringParams["page"]) {
+      openGiversApp(_baseKioskURL + data.referringParams["page"]);
+    }
+  } else {
+    app.initialize();
+  }
+});
+
 App.addListener("resume", () => app.initialize());
-app.initialize();

@@ -49,14 +49,8 @@ else if(environment == 'local')
 else if(environment == 'prod')
 {
 	var _baseURL = 'https://www.'+_whitelabel+'.com/';
-	//if(_whitelabel == 'continuetogive')
-	//{
-	//	var _kioskURL = 'https://www.kiosk.'+_whitelabel+'.com/';		
-	//}
-	//else
-	//{
-		var _kioskURL = 'https://giverapp.'+_whitelabel+'.com/index.php?moduleType=Module_Search&task=show.results&page=1';
-	//}
+	var _baseKioskURL = 'https://giverapp.'+_whitelabel+'.com/';
+	var _kioskURL = 'https://giverapp.'+_whitelabel+'.com/index.php?moduleType=Module_Search&task=show.results&page=1';
 }
 else
 {
@@ -91,4 +85,4 @@ $( document ).ready(function() {
 });
 */
 
-export { _kiosklicense, _kioskURL, DEV_MODE };
+export { _kiosklicense, _kioskURL, _baseKioskURL, DEV_MODE };
